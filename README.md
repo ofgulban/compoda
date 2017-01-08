@@ -5,16 +5,17 @@ Simplex based tools for multi-channel MRI data.
 
 [**Python 2.7**](https://www.python.org/download/releases/2.7/)
 
-| Package                              | Tested version |
-|--------------------------------------|----------------|
-| [NumPy](http://www.numpy.org/)       | 1.11.1         |
-| [Scipy]()                            |                |
-| [matplotlib](http://matplotlib.org/) | 1.5.3          |
-| [NiBabel](http://nipy.org/nibabel/)  | 2.1.0          |
-| [ternary]                            |                |
+| Package                                                 | Tested version |
+|---------------------------------------------------------|----------------|
+| [NumPy](http://www.numpy.org/)                          | 1.11.1         |
+| [Scipy](https://www.scipy.org/)                         | 0.18.1         |
+| [matplotlib](http://matplotlib.org/)                    | 1.5.3          |
+| [NiBabel](http://nipy.org/nibabel/)                     | 2.1.0          |
+| [ternary](https://github.com/marcharper/python-ternary) | 1.0            |
 
 ## Installation & Quick Start
 
+...
 
 ## Support
 
