@@ -87,3 +87,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Local stuff for tests which does not need to be pushed
+local/
