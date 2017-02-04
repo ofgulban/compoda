@@ -23,7 +23,7 @@ Please use [GitHub issues](https://github.com/ofgulban/tetrahydra/issues) for qu
 
 ## License
 
-The project is licensed under [GNU Geneal Public License Version 3](http://www.gnu.org/licenses/gpl.html).
+The project is licensed under [GNU General Public License Version 3](http://www.gnu.org/licenses/gpl.html).
 
 ## References
 
