@@ -4,7 +4,9 @@ import os
 import numpy as np
 from __future__ import division
 from nibabel import Nifti1Image, load, save
-from utils import truncate_and_scale, aitchison_norm, aitchison_dist
+from tetrahydra.core import aitchison_dist, aitchison_dist
+from tetrahydra.utils import truncate_and_scale
+
 
 np.seterr(divide='ignore', invalid='ignore')
 

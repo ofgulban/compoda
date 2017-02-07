@@ -1,13 +1,13 @@
+"""Example usages of ternary plotting library."""
+
 import os
-import math
 import ternary
 import numpy as np
-from nibabel import load, save, Nifti1Image
-from AutoScale import AutoScale
+from nibabel import load
+from tetrahydra.utils import truncate_and_scale
 np.seterr(divide='ignore', invalid='ignore')
 
-"""Load Data"""
-#
+# Load data
 vol1 = load('/home/faruk/Data/Michelle/roi/T2s_roi.nii.gz')
 vol2 = load('/home/faruk/Data/Michelle/roi/PD_roi.nii.gz')
 vol3 = load('/home/faruk/Data/Michelle/roi/T1_roi.nii.gz')
@@ -18,9 +18,9 @@ niiHeader, niiAffine = vol1.header, vol1.affine
 shape = vol1.shape + (3,)
 
 # Preprocess
-vol1 = AutoScale(vol1.get_data(), percMin=0, percMax=100)
-vol2 = AutoScale(vol2.get_data(), percMin=0, percMax=100)
-vol3 = AutoScale(vol3.get_data(), percMin=0, percMax=100)
+vol1 = truncate_and_scale(vol1.get_data(), percMin=0, percMax=100)
+vol2 = truncate_and_scale(vol2.get_data(), percMin=0, percMax=100)
+vol3 = truncate_and_scale(vol3.get_data(), percMin=0, percMax=100)
 
 rgb = np.zeros(shape)
 rgb[:, :, :, 0] = vol1
@@ -33,11 +33,11 @@ sum_rgb = np.sum(rgb, axis=1)
 for i in range(shape[3]):
     rgb[:, i] = rgb[:, i]/sum_rgb
 
-# scale data if needed
+# Scale data if needed
 scale = 50
 rgb = rgb * scale
 
-# heatmap related
+# Heatmap related
 start = 0
 a = []
 for i in range(start, scale + (1 - start)):
@@ -45,7 +45,7 @@ for i in range(start, scale + (1 - start)):
         k = scale - i - j
         a.append((i, j, k))
 
-# ternary binning
+# Ternary binning
 counts = []
 for i in range(len(a)):  # for every vertex
     # for j in range(len(a[i])):  # for every index in a vertex

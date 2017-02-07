@@ -2,9 +2,8 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-from utils import (closure, cart_to_quasipolar, rad_to_deg, geometric_mean,
-                   alr_transforation, clr_transforation, ilr_transformation,
-                   aitchison_inner_product)
+from tetrahydra.core import (closure, alr_transforation, clr_transforation,
+                             ilr_transformation)
 
 data = np.ones([7, 3])
 data[1, 0] *= 100
