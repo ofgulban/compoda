@@ -5,14 +5,12 @@ Simplex based tools to analyze multi-channel MR images as compositional data.
 
 [**Python 2.7**](https://www.python.org/download/releases/2.7/)
 
-### For the core:
-
 | Package                                                 | Tested version |
 |---------------------------------------------------------|----------------|
 | [NumPy](http://www.numpy.org/)                          | 1.11.1         |
 | [Scipy](https://www.scipy.org/)                         | 0.18.1         |
 
-### Additionally required for example scripts:
+#### Additionally required for example scripts:
 
 | Package                                                 | Tested version |
 |---------------------------------------------------------|----------------|
