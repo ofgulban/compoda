@@ -1,13 +1,12 @@
-"""Barycentric to carthesian for simplices."""
+"""(WIP) Barycentric to carthesian for simplices."""
 
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
-from scipy.spatial import distance
-from simplex_coordinates1 import simplex_coordinates1
-from simplex_coordinates2 import simplex_coordinates2
 from matplotlib.collections import PatchCollection
-from utils import cart_to_quasipolar, rad_to_deg
+from scipy.spatial import distance
+from tetrahydra.future import simplex_coordinates1, simplex_coordinates2
+from tetrahydra.utils import cart_to_quasipolar, rad_to_deg
 
 fig, ax = plt.subplots()
 

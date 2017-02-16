@@ -1,4 +1,4 @@
-"""Convert barycentric coordinates to cartesian using regular simplices.
+"""(WIP) Convert barycentric coordinates to cartesian using regular simplices.
 
 Assumes the following preprocessing steps are already done:
     1) Imputing, swap zeroes with minimum possible measurement.
@@ -12,9 +12,9 @@ NOTE: Sth is wrong. Numbers are not looking correct
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
-from simplex_coordinates1 import simplex_coordinates1
-from simplex_coordinates2 import simplex_coordinates2
-from utils import closure, cart_to_quasipolar, rad_to_deg, deg_to_rad
+from tetrahydra.core import closure
+from tetrahydra.utils import cart_to_quasipolar, rad_to_deg, deg_to_rad
+from tetrahydra.future import simplex_coordinates1, simplex_coordinates2
 
 data = np.ones([6, 3])
 data[0, 0] *= 100

@@ -1,3 +1,5 @@
+"""Example usages of ternary plotting library."""
+
 import ternary
 
 # Boundary and Gridlines
