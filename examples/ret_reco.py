@@ -10,7 +10,7 @@ from retinex_for_mri.filters import anisodiff3
 from scipy.ndimage import zoom, gaussian_filter
 
 # load nifti
-file_path = '/media/Data_Drive/Benchmark_Data/compositional_data/Pebre/SE_CP.nii.gz'
+file_path = '/home/faruk/Data/retinex_tests/pebre/kT/merged.nii.gz'
 dir_name = os.path.dirname(file_path)
 nii = load(file_path)
 basename = nii.get_filename().split(os.extsep, 1)[0]
@@ -23,7 +23,8 @@ data = data[..., 0::2]  # remove redundant channels after interpolation
 print 'Interpolation is done.'
 
 # padding to mitigate gaussian effects in retinex
-data = np.pad(data, ((20, 20),(20, 20), (20, 20), (0, 0)), mode='constant', constant_values=0)
+data = np.pad(data, ((20, 20), (20, 20), (20, 20), (0, 0)),
+              mode='constant', constant_values=0)
 dims = data.shape
 
 # traditional combination
@@ -36,7 +37,7 @@ save(out, basename + '_comb.nii.gz')
 for i in range(dims[3]):
     data[..., i] = gaussian_filter(data[..., i], 1, mode="constant", cval=0.0)
     # data[..., i] = anisodiff3(data[..., i], niter=1, kappa=100, gamma=0.1, option=1)
-    data[..., i] = truncate_and_scale(data[..., i], percMin=0, percMax=100)
+    data[..., i] = truncate_and_scale(data[..., i], percMin=1, percMax=100)
 
 # save smoothed combination
 comb = np.sqrt(np.sum(data**2.0, axis=3))
@@ -71,7 +72,7 @@ for i in range(dims[3]):
 
 # handle new shape
 bary = bary.reshape(dims[0], dims[1], dims[2], dims[3])
-bary = np.delete(bary, (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), axis=3)
+bary = np.delete(bary, (0, 1, 46, 47), axis=3)  # (optional) remove channels
 dims = bary.shape
 bary = bary.reshape(dims[0] * dims[1] * dims[2], dims[3])
 
