@@ -1,7 +1,9 @@
 """Core functions used in compositional data analysis."""
 
+from __future__ import division
 import numpy as np
 from scipy.linalg import helmert
+
 
 def closure(data, k=1.0):
     """Apply closure to data, sample-wise.
