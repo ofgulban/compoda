@@ -201,3 +201,69 @@ def ilr_transformation(data):
     for i in range(data.shape[0]):
         out[i, :] = np.dot(np.log(data[i, :]), helmertian)
     return out
+
+
+def sample_center(data):
+    """Sample center (wip).
+
+    TODO: Need to solve overflow happening with too many samples.
+
+    Parameters
+    ----------
+    data : 2d numpy array, shape [n_samples, n_coordinates]
+        Barycentric coordinates (closed) of data in simplex space.
+
+    Returns
+    -------
+        center : 2d numpy array, shape [1, n_coordinates]
+        Central tendency of a compositional sample.
+
+    Reference
+    ---------
+    [1] Pawlowsky-Glahn, V., Egozcue, J. J., & Tolosana-Delgado, R.
+        (2015). Modelling and Analysis of Compositional Data, pg. 66.
+        Chichester, UK: John Wiley & Sons, Ltd.
+        DOI: 10.1002/9781119003144
+
+    """
+    dims = data.shape
+    center = np.zeros(dims[1])
+    for j in range(dims[1]):  # loop through indices
+        temp = 1.
+        for i in range(dims[0]):  # loop through samples
+            temp *= data[i, j]
+        center[j] = np.power(temp, 1./dims[0])
+    return closure(center[None, :])
+
+
+def sample_total_variance(data, center):
+    """Sample total variance (wip).
+
+    Parameters
+    ----------
+    data : 2d numpy array, shape [n_samples, n_coordinates]
+        Barycentric coordinates (closed) of data in simplex space.
+
+    center : 2d numpy array, shape [1, n_coordinates]
+        Central tendency of a compositional sample.
+
+    Returns
+    -------
+        tot_var : float
+        Global dispersion of compositional sample.
+
+    Reference
+    ---------
+    [1] Pawlowsky-Glahn, V., Egozcue, J. J., & Tolosana-Delgado, R.
+        (2015). Modelling and Analysis of Compositional Data, pg. 67.
+        Chichester, UK: John Wiley & Sons, Ltd.
+        DOI: 10.1002/9781119003144
+
+    """
+    dims = data.shape
+    temp = 0
+    # average squared aitchison distance
+    for i in range(dims[0]):
+        temp += aitchison_dist(data[None, i, :], center)**2.
+    tot_var = 1./dims[0] * temp
+    return tot_var
