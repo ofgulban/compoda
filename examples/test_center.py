@@ -2,7 +2,7 @@
 
 import numpy as np
 from tetrahydra.core import (closure, perturbation, powering, sample_center,
-                             sample_total_variance, aitchison_dist)
+                             sample_total_variance)
 from nibabel import load
 
 # Load data
