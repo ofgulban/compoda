@@ -20,11 +20,71 @@ def closure(data, k=1.0):
     data : 2d numpy array, shape [n_samples, n_measurements]
         Closed data.
 
+    Reference
+    ---------
+    [1] Pawlowsky-Glahn, V., Egozcue, J. J., & Tolosana-Delgado, R.
+        (2015). Modelling and Analysis of Compositional Data, pg. 9.
+        Chichester, UK: John Wiley & Sons, Ltd.
+        DOI: 10.1002/9781119003144
+
     """
     data_sum = np.sum(data, axis=1)
     for i in range(data.shape[1]):
         data[:, i] /= data_sum
     return data
+
+
+def perturbation(x, y):
+    """Perturbation (analogous to addition in real space).
+
+    Parameters
+    ----------
+    x, y: 2d numpy array, shape [n_samples, n_measurements]
+        Input x will be perturbed by y. Use y**-1 as the second input for
+        perturbation difference (analogous to subtraction in real space).
+
+    Returns
+    -------
+    out : 2d numpy array, shape [n_samples, n_measurements]
+        Perturbed x.
+
+    Reference
+    ---------
+    [1] Pawlowsky-Glahn, V., Egozcue, J. J., & Tolosana-Delgado, R.
+        (2015). Modelling and Analysis of Compositional Data, pg. 24.
+        Chichester, UK: John Wiley & Sons, Ltd.
+        DOI: 10.1002/9781119003144
+
+    """
+    out = closure(x * y)
+    return out
+
+
+def powering(x, a):
+    """Power transformation (analogous to multiplication in real space).
+
+    Parameters
+    ----------
+    x : 2d numpy array, shape [n_samples, n_measurements]
+        Input x will be powered by a.
+    a : float
+        Constant, real number.
+
+    Returns
+    -------
+    out : 2d numpy array, shape [n_samples, n_measurements]
+        Power transformed x.
+
+    Reference
+    ---------
+    [1] Pawlowsky-Glahn, V., Egozcue, J. J., & Tolosana-Delgado, R.
+        (2015). Modelling and Analysis of Compositional Data, pg. 24.
+        Chichester, UK: John Wiley & Sons, Ltd.
+        DOI: 10.1002/9781119003144
+
+    """
+    out = closure(np.power(x, a))
+    return out
 
 
 def aitchison_inner_product(x, y):
