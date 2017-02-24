@@ -264,9 +264,7 @@ def ilr_transformation(data):
 
 
 def sample_center(data):
-    """Sample center (wip).
-
-    TODO: Need to solve overflow happening with too many samples.
+    """Sample center.
 
     Parameters
     ----------
@@ -291,8 +289,8 @@ def sample_center(data):
     for j in range(dims[1]):  # loop through indices
         temp = 1.
         for i in range(dims[0]):  # loop through samples
-            temp *= data[i, j]
-        center[j] = np.power(temp, 1./dims[0])
+            temp *= np.power(data[i, j], 1./dims[0])
+        center[j] = temp
     return closure(center[None, :])
 
 
