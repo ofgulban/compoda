@@ -11,7 +11,8 @@ def closure(data, k=1.0):
     Parameters
     ----------
     data : 2d numpy array, shape [n_samples, n_measurements]
-        Data to be closed to a certain constant.
+        Data to be closed to a certain constant. Do not forget to deal with
+        zeros in the data before this operation.
     k : float, positive
         Sum of the measurements will be equal to this number.
 
@@ -295,7 +296,7 @@ def sample_center(data):
 
 
 def sample_total_variance(data, center):
-    """Sample total variance (wip).
+    """Sample total variance (wip, TODO: too slow).
 
     Parameters
     ----------
