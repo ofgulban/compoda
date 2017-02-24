@@ -1,13 +1,14 @@
 """(WIP) Test sample center and sample total variance."""
 
 import numpy as np
-from tetrahydra.core import closure, sample_center, sample_total_variance, aitchison_dist
+from tetrahydra.core import (closure, perturbation, powering, sample_center,
+                             sample_total_variance, aitchison_dist)
 from nibabel import load
 
 # Load data
-nii1 = load('/some/data/echo_1.nii.gz')
-nii2 = load('/some/data/echo_2.nii.gz')
-nii3 = load('/some/data/echo_3.nii.gz')
+nii1 = load('/home/faruk/Data/benedikt/echo_1.nii.gz')
+nii2 = load('/home/faruk/Data/benedikt/echo_2.nii.gz')
+nii3 = load('/home/faruk/Data/benedikt/echo_3.nii.gz')
 
 # Preprocess
 vol1 = nii1.get_data()[..., 50]
@@ -30,3 +31,9 @@ comp = np.asarray(comp, dtype='float64')
 comp = closure(comp)
 center = sample_center(comp[80000:80200, :])
 sample_total_variance(comp[80000:80200, :], center)
+
+# Perturbation
+test = np.ones(comp.shape)
+test[:, 2] = 2
+perturbation(comp, test)
+powering(comp, 2)
