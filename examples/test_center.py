@@ -2,13 +2,13 @@
 
 import numpy as np
 from tetrahydra.core import (closure, perturbation, powering, sample_center,
-                             sample_total_variance)
+                             sample_total_variance, simplicial_std)
 from nibabel import load
 
 # Load data
-nii1 = load('/home/faruk/Data/benedikt/echo_1.nii.gz')
-nii2 = load('/home/faruk/Data/benedikt/echo_2.nii.gz')
-nii3 = load('/home/faruk/Data/benedikt/echo_3.nii.gz')
+nii1 = load('/home/faruk/Data/benedikt/multi_echo_epi/nifti/echo_1.nii.gz')
+nii2 = load('/home/faruk/Data/benedikt/multi_echo_epi/nifti/echo_2.nii.gz')
+nii3 = load('/home/faruk/Data/benedikt/multi_echo_epi/nifti/echo_3.nii.gz')
 
 # Preprocess
 vol1 = nii1.get_data()[..., 50]
@@ -29,11 +29,18 @@ comp[comp == 0] = 1
 comp.shape
 comp = np.asarray(comp, dtype='float64')
 comp = closure(comp)
+
+# Center
 center = sample_center(comp[80000:80200, :])
+# Dispersion
 sample_total_variance(comp[80000:80200, :], center)
 
 # Perturbation
 test = np.ones(comp.shape)
 test[:, 2] = 2
 perturbation(comp, test)
+# Powering
 powering(comp, 2)
+
+# Simplicial standard deviation
+simplicial_std(comp)
