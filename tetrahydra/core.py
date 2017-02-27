@@ -296,7 +296,7 @@ def sample_center(data):
 
 
 def sample_total_variance(data, center):
-    """Sample total variance (wip, TODO: too slow).
+    """Sample total variance.
 
     Parameters
     ----------
@@ -321,9 +321,8 @@ def sample_total_variance(data, center):
     """
     dims = data.shape
     temp = 0
-    # average squared aitchison distance
-    for i in range(dims[0]):
-        temp += aitchison_dist(data[None, i, :], center)**2.
+    center = np.ones(dims) * center
+    temp = np.sum(aitchison_dist(data, center)**2, axis=0)
     tot_var = 1./dims[0] * temp
     return tot_var
 
