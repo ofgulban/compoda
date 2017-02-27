@@ -326,3 +326,30 @@ def sample_total_variance(data, center):
         temp += aitchison_dist(data[None, i, :], center)**2.
     tot_var = 1./dims[0] * temp
     return tot_var
+
+
+def simplicial_std(data):
+    """(WIP) Simplicial standard deviation.
+
+    Parameters
+    ----------
+    data : 2d numpy array, shape [n_samples, n_coordinates]
+        Barycentric coordinates (closed) of data in simplex space.
+
+    Returns
+    -------
+        sstd : float
+        Simplicial standard deviation of the sample.
+
+    Reference
+    ---------
+    [1] Pawlowsky-Glahn, V., Egozcue, J. J., & Tolosana-Delgado, R.
+        (2015). Modelling and Analysis of Compositional Data, pg. 111.
+        Chichester, UK: John Wiley & Sons, Ltd.
+        DOI: 10.1002/9781119003144
+
+    """
+    dims = data.shape
+    totvar = sample_total_variance(data, sample_center(data))
+    sstd = np.sqrt(totvar/(dims[1]-1))
+    return sstd
