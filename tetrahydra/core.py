@@ -265,7 +265,7 @@ def ilr_transformation(data):
 
 
 def sample_center(data):
-    """Sample center.
+    """Sample center inside simplex.
 
     Parameters
     ----------
