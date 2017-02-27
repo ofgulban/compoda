@@ -286,12 +286,7 @@ def sample_center(data):
 
     """
     dims = data.shape
-    center = np.zeros(dims[1])
-    for j in range(dims[1]):  # loop through indices
-        temp = data[:, j]
-        temp = np.power(temp, 1./dims[0])
-        temp = np.prod(temp)
-        center[j] = temp
+    center = np.prod(np.power(data, 1./dims[0]), axis=0)
     return closure(center[None, :])
 
 
