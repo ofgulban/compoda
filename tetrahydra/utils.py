@@ -1,5 +1,6 @@
 """Utility functions."""
 
+import sys
 import numpy as np
 
 
@@ -92,3 +93,16 @@ def cart_to_quasipolar(cart_coord):
             qpol_coord[:, n] = np.arccos(cart_coord[:, n]
                                          / (r * rec_mult(qpol_coord, n, i)))
     return qpol_coord
+
+
+def progress_output(input1, input2, text=''):
+    """Handy progress output procedure for command line.
+
+    Parameters
+    ----------
+    input1, input2 : Int
+        input1 out of input2
+
+    """
+    sys.stdout.write(("\r%i/%i " + text) % (input1, input2))
+    sys.stdout.flush()
