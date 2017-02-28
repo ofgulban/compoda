@@ -28,10 +28,8 @@ comp[..., 2] = vol3
 dims = comp.shape
 comp = comp.reshape(dims[0]*dims[1]*dims[2], dims[3], dims[4])
 nr_vox = dims[0]*dims[1]*dims[2]
-nr_time = dims[-1]
+nr_time = dims[-2]
 
-# impute
-comp[comp == 0] = 0.000001
 
 # scale phase images
 i = 0
@@ -39,11 +37,18 @@ for i in range(dims[-1]):
     temp = comp[..., i]
     temp = truncate_and_scale(temp, zeroTo=2*np.pi)
     temp = np.rad2deg(temp)
+
     # temp[temp > 240] = temp[temp > 240] % 120
+    # temp[temp > 120] = 120 - temp[temp > 120] % 120
+
     temp[temp > 120] = 120 - temp[temp > 120] % 120
     temp[temp > 60] = 60 - temp[temp > 60] % 60
     temp[temp > 30] = 30 - temp[temp > 30] % 30
-    comp[..., i] = temp[:]
+
+    # impute
+    temp[temp == 0] = 0.000001
+
+    comp[..., i] = temp
 
 # save processed phase images
 for i in range(dims[-1]):
@@ -52,18 +57,34 @@ for i in range(dims[-1]):
     out = Nifti1Image(img, affine=np.eye(4))
     save(out, os.path.join(dirname, 'phaseFold3_' + str(i+1) + '.nii.gz'))
 
-# # find aitchison norm of phase compositions
-# anorm = np.zeros((dims[0]*dims[1]*dims[2], dims[3]))
-# for v in range(nr_vox):  # loop through voxels
-#     comp[v, ...] = tet.closure(comp[v, ...])
-#     anorm[v, ...] = tet.aitchison_norm(comp[v, ...])
-#     # progress_output(v, nr_vox)
-# print 'Anorm image computed.'
-#
-# img = anorm.reshape(dims[0], dims[1], dims[2], dims[3])
-# out = Nifti1Image(img, affine=nii1.affine)
-# save(out, os.path.join(dirname, 'phase_anorm.nii.gz'))
-#
+# find aitchison norm of phase compositions
+anorm = np.zeros((dims[0]*dims[1]*dims[2], dims[3]))
+for v in range(nr_vox):  # loop through voxels
+    comp[v, ...] = tet.closure(comp[v, ...], k=100)
+    anorm[v, ...] = tet.aitchison_norm(comp[v, ...])
+    # progress_output(v, nr_vox)
+print 'Anorm image computed.'
+
+img = anorm.reshape(dims[0], dims[1], dims[2], dims[3])
+out = Nifti1Image(img, affine=nii1.affine)
+save(out, os.path.join(dirname, 'phase_anorm.nii.gz'))
+
+# -----------------------------------------------------------------------------
+
+# save phase temporal gradient
+gra = np.zeros((nr_vox, nr_time-1, 3))
+for t in range(nr_time-1):
+    # gra[:, t] = tet.aitchison_dist(comp[:, t, :], comp[:, t+1, :])
+    gra[:, t, :] = comp[:, t, :] - comp[:, t+1, :]
+
+for i in range(dims[-1]):
+    img = gra[..., i]
+    img = img.reshape(dims[0], dims[1], dims[2], nr_time-1)
+    out = Nifti1Image(img, affine=nii1.affine)
+    save(out, os.path.join(dirname, 'phase'+str(i+1)+'_temp_gra.nii.gz'))
+
+# -----------------------------------------------------------------------------
+
 # # correct magnitude images
 # nii4 = load('/home/faruk/Data/benedikt/multi_echo_epi/nifti/echo_1.nii.gz')
 # nii5 = load('/home/faruk/Data/benedikt/multi_echo_epi/nifti/echo_2.nii.gz')
@@ -79,7 +100,7 @@ for i in range(dims[-1]):
 # mag = mag.reshape(dims[0]*dims[1]*dims[2], dims[3], dims[4])
 #
 # for i in range(dims[-1]):
-#     mag[..., i] = tet.closure(mag[..., i])
+#     mag[..., i] = tet.closure(mag[..., i], k=100)
 #
 # for t in range(nr_time):
 #     mag[:, t, :] = tet.perturb(mag[:, t, :], comp[:, t, ::-1])
@@ -91,3 +112,5 @@ for i in range(dims[-1]):
 #     img = img.reshape(dims[0], dims[1], dims[2], dims[3])
 #     out = Nifti1Image(img, affine=nii1.affine)
 #     save(out, os.path.join(dirname, 'magcor_' + str(i+1) + '.nii.gz'))
+#
+# print 'Finished.'
