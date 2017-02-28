@@ -38,10 +38,10 @@ for i in range(dims[-1]):
     temp = truncate_and_scale(temp, zeroTo=2*np.pi)
     temp = np.rad2deg(temp)
 
-    # temp[temp > 240] = temp[temp > 240] % 120
-    # temp[temp > 120] = 120 - temp[temp > 120] % 120
-
+    temp[temp > 240] = temp[temp > 240] % 120
     temp[temp > 120] = 120 - temp[temp > 120] % 120
+
+    # temp[temp > 120] = 120 - temp[temp > 120] % 120
     temp[temp > 60] = 60 - temp[temp > 60] % 60
     temp[temp > 30] = 30 - temp[temp > 30] % 30
 
@@ -83,9 +83,15 @@ for i in range(dims[-1]):
     out = Nifti1Image(img, affine=nii1.affine)
     save(out, os.path.join(dirname, 'phase'+str(i+1)+'_temp_gra.nii.gz'))
 
+# save gradient magnitude
+tgramag = np.sum(np.abs(gra), axis=1)
+img = tgramag.reshape(dims[0], dims[1], dims[2], dims[4])
+out = Nifti1Image(img, affine=nii1.affine)
+save(out, os.path.join(dirname, 'phase_temp_gramag.nii.gz'))
+
 # -----------------------------------------------------------------------------
 
-# # correct magnitude images
+# # manipulate magnitude images
 # nii4 = load('/home/faruk/Data/benedikt/multi_echo_epi/nifti/echo_1.nii.gz')
 # nii5 = load('/home/faruk/Data/benedikt/multi_echo_epi/nifti/echo_2.nii.gz')
 # nii6 = load('/home/faruk/Data/benedikt/multi_echo_epi/nifti/echo_3.nii.gz')
