@@ -1,5 +1,6 @@
 """Utility functions."""
 
+from __future__ import division
 import sys
 import numpy as np
 
@@ -106,3 +107,45 @@ def progress_output(input1, input2, text=''):
     """
     sys.stdout.write(("\r%i/%i " + text) % (input1, input2))
     sys.stdout.flush()
+
+
+def kundu2012_eq1(S_0, TE_n, T_2s):
+    """Kundu et al. 2012, equation 1.
+
+    Parameters
+    ----------
+    S_0 : float
+    TE_n : float
+    T_2s : float
+
+    Returns
+    -------
+    signal : float
+
+    """
+    signal = S_0 * np.exp(-TE_n/T_2s)
+    return signal
+
+
+def simple_bloch(M_0=800, TI=np.arange(80, 10000), T_1=1000, TR=7000,
+                 alpha=0.95):
+    """(WIP) simple bloch equation.
+
+    Parameters
+    ----------
+    M_0 : float
+    TI : np.array, shape 1d
+        Time intervals in ms.
+    T_1 : float
+        T1 value of a certain tissue (eg. white matter).
+    TR : float
+        Repetition time in ms.
+    alpha : float
+
+    Returns
+    -------
+    signal : np.array, shape 1d, float
+
+    """
+    signal = M_0 * (1. - 2. * alpha * np.exp(-(TI/T_1) + np.exp(-TR/T_1)))
+    return signal
