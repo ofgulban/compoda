@@ -35,7 +35,7 @@ def closure(data, k=1.0):
     return data
 
 
-def perturbation(x, y):
+def perturb(x, y):
     """Perturbation (analogous to addition in real space).
 
     Parameters
@@ -61,8 +61,8 @@ def perturbation(x, y):
     return out
 
 
-def powering(x, a):
-    """Power transformation (analogous to multiplication in real space).
+def power(x, a):
+    """Powering transformation (analogous to multiplication in real space).
 
     Parameters
     ----------
@@ -265,7 +265,7 @@ def ilr_transformation(data):
 
 
 def sample_center(data):
-    """Sample center inside simplex.
+    """Sample center.
 
     Parameters
     ----------
@@ -322,8 +322,8 @@ def sample_total_variance(data, center):
     return tot_var
 
 
-def simplicial_std(data):
-    """(WIP) Simplicial standard deviation.
+def sample_sstd(data):
+    """Sample simplicial standard deviation.
 
     Parameters
     ----------
