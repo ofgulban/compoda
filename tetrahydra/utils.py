@@ -109,24 +109,6 @@ def progress_output(input1, input2, text=''):
     sys.stdout.flush()
 
 
-def kundu2012_eq1(S_0, TE_n, T_2s):
-    """Kundu et al. 2012, equation 1.
-
-    Parameters
-    ----------
-    S_0 : float
-    TE_n : float
-    T_2s : float
-
-    Returns
-    -------
-    signal : float
-
-    """
-    signal = S_0 * np.exp(-TE_n/T_2s)
-    return signal
-
-
 def simple_bloch(M_0=800, TI=np.arange(80, 10000), T_1=1000, TR=7000,
                  alpha=0.95):
     """(WIP) simple bloch equation.
@@ -148,4 +130,42 @@ def simple_bloch(M_0=800, TI=np.arange(80, 10000), T_1=1000, TR=7000,
 
     """
     signal = M_0 * (1. - 2. * alpha * np.exp(-(TI/T_1) + np.exp(-TR/T_1)))
+    return signal
+
+
+def kundu2012_eq1(S_0, TE_n, T_2s):
+    """Kundu et al. 2012, equation 1.
+
+    Parameters
+    ----------
+    S_0 : float
+    TE_n : float
+    T_2s : float
+
+    Returns
+    -------
+    signal : float
+
+    """
+    signal = S_0 * np.exp(-TE_n/T_2s)
+    return signal
+
+
+def hagberg2014_eq5(M_0, TE_n, T_2s, phi):
+    """Hagberg et al. 2014, equation 5.
+
+    Parameters
+    ----------
+    M_0 : float
+    TE_n : float
+    T_2s : float
+    phi : float
+        Probably in radians.
+
+    Returns
+    -------
+    signal : complex
+
+    """
+    signal = M_0 * np.exp(-TE_n/T_2s) * np.exp(-np.complex(0, 1)*phi)
     return signal
