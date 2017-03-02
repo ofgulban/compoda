@@ -169,3 +169,30 @@ def hagberg2014_eq5(M_0, TE_n, T_2s, phi):
     """
     signal = M_0 * np.exp(-TE_n/T_2s) * np.exp(-np.complex(0, 1)*phi)
     return signal
+
+
+def shan2014_eq6(A=[-0.2, 1.8, -1.8, 0.2], T=[0.1, 4, 10, 20],
+                 D=[8, 1, 1, 1.2], t=range(4)):
+    """Shan et al. 2014, equation 6.
+
+    Parameters
+    ----------
+    A : float
+        Height and direction of HRf.
+    T : float
+        Shift center of HRF.
+    D : float
+        Slope of HRF.
+    t : float
+        Timepoints
+
+    Returns
+    -------
+    signal : float
+
+    """
+    A, T, D, t = np.asarray(A), np.asarray(T), np.asarray(D), np.asarray(t)
+    signal = np.zeros(t.shape)
+    for i in t:
+        signal[i] = signal[i-1] + A[i]/(1. + np.exp((t[i]-T[i]) / D[i]))
+    return signal
