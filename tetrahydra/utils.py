@@ -196,3 +196,32 @@ def shan2014_eq6(A=[-0.2, 1.8, -1.8, 0.2], T=[0.1, 4, 10, 20],
     for i in t:
         signal[i] = signal[i-1] + A[i]/(1. + np.exp((t[i]-T[i]) / D[i]))
     return signal
+
+
+def posse1999_eq1(S_0, TE_n, T_2s, g=0, h=0):
+    """Posse et al. 1999, equation 1.
+
+    Parameters
+    ----------
+    S_0 : float
+        The initial signal amplitude. May vary from measurement to
+        measurement due to hardware instabilities or flow-related
+        saturation effects.
+    TE_n : float
+        Echo time.
+    T_2s : float
+        T2* is the stimulus-dependent relaxation time.
+    g : float
+        White noise (thermal noise and hardware instabilities).
+    h : float
+        More slowly varying noise which reflects physiologica
+        mechanisms, such as heart-beat-related brain pulsation and
+        stimulus independent vasomotor activity.
+
+    Returns
+    -------
+    signal : float
+
+    """
+    signal = S_0 * np.exp(-TE_n/T_2s) + g + h
+    return signal
