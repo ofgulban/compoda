@@ -71,7 +71,7 @@ for r in [0, -1]:  # only the smallest and biggest value for simplicity
                     label='$M_0=%i, T_1=%i$' % (M_0[-1], T_1[r]))
 ax_1.legend(loc='lower right')
 
-# Across measurements (hrf-like representation)
+# Across voxels ("WM to GM transition" representation)
 ax_2 = fig.add_subplot(232)
 ax_2.set_title('(B) MRI signal across voxels (eg.  "WM to GM-like" transition)\n\
     Row 1: changing $T_1$, Row 2: changing $M_0$')
@@ -109,7 +109,7 @@ for r in [-1, 0]:  # only the smallest and biggest value for simplicity
                     label='$M_0=%i, T_1=%i$' % (M_0[r], T_1[0]))
 ax_4.legend(loc='lower right')
 
-# Across measurements (hrf-like representation)
+# Across voxels ("WM to GM transition" representation)
 ax_5 = fig.add_subplot(235)
 ax_5.set_xlabel('Voxels (spatial domain)')
 ax_5.set_xticks(range(len(selected_M0s)))
