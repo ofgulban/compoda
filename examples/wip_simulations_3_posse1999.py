@@ -12,7 +12,10 @@ T_2s = [40, 50, 60]
 TE_n = np.arange(0, 100)
 nr_measurements = len(T_2s)
 nr_TE = len(TE_n)
-selected_TE = [15, 30, 45]
+selected_TE = np.array([15, 30, 45])
+# quick HRF-like fMRI signal
+selected_T2s = np.array([40, 40, 50, 60, 60, 50, 40, 37, 40, 40])
+selected_S0s = np.array([100, 100, 112, 120, 120, 112, 100, 95, 100, 100])
 
 # Considering T2* effects -----------------------------------------------------
 # The loop is explicitly following descriptions of Posse et al. 1999
@@ -22,10 +25,9 @@ for r in range(nr_measurements):
     signal_T2s[r, :] = signal_r
 
 # create HRF-like timeseries by appending reversed signal_T2s
-timeseries_T2s = np.zeros((len(selected_TE), 6))
+timeseries_T2s = np.zeros((len(selected_TE), len(selected_T2s)))
 for r in range(len(selected_TE)):
-    timeseries_T2s[r, :] = np.hstack((signal_T2s[:, selected_TE[r]],
-                                      signal_T2s[::-1, selected_TE[r]]))
+    timeseries_T2s[r, :] = posse1999_eq1(S_0[-1], selected_TE[r], selected_T2s)
 
 # Compositional descriptive (Aitchison norm) of signal_T2s
 bary_T2s = tet.closure(np.copy(timeseries_T2s.T))
@@ -38,10 +40,9 @@ for r in range(nr_measurements):
     signal_S0[r, :] = signal_r
 
 # create HRF-like timeseries by appending reversed signal_T2s
-timeseries_S0 = np.zeros((len(selected_TE), 6))
+timeseries_S0 = np.zeros((len(selected_TE), len(selected_S0s)))
 for r in range(len(selected_TE)):
-    timeseries_S0[r, :] = np.hstack((signal_S0[::-1, selected_TE[r]],
-                                     signal_S0[:, selected_TE[r]]))
+    timeseries_S0[r, :] = posse1999_eq1(selected_S0s, selected_TE[r], T_2s[0])
 
 # Compositional descriptive (Aitchison norm) of signal_T2s
 bary_S0 = tet.closure(np.copy(timeseries_S0.T))
@@ -50,7 +51,10 @@ anorm_S0 = tet.aitchison_norm(bary_S0)
 # Plots -----------------------------------------------------------------------
 
 fig = plt.figure(1)
-fig.suptitle('Posse 1999, eq. 1', fontweight='bold')
+fig.suptitle(r'$S(t_r, TE_n) = S_0(t_r) exp{(-TE_n/T_2^*(t_r))} \
+    + g_{nr} + h_r$',
+             fontsize=14, x=0.01, y=0.01,
+             horizontalalignment='left', verticalalignment='bottom')
 
 # Considering T2* effects -----------------------------------------------------
 # Across TEs
@@ -64,12 +68,12 @@ ax_1.set_ylim((0, 120))
 colors = [(0.5, 0, 0), (1, 0, 0)]
 for r in [0, -1]:  # only the smallest and biggest value for simplicity
     slc = ax_1.plot(signal_T2s[r, :], lw=2, color=colors[r],
-                    label='$S_0: %i, T_2^*: %i$' % (S_0[-1], T_2s[r]))
+                    label='$T_2^*=%i, S_0=%i$' % (T_2s[r], S_0[-1]))
 ax_1.legend(loc='upper right')
 
 # Across measurements (hrf-like representation)
 ax_2 = fig.add_subplot(232)
-ax_2.set_title('(B) Multi-echo BOLD-like signal due to\n\
+ax_2.set_title('(B) Multi-echo HRF-like fMRI signal due to\n\
     Row 1: fluctuating $T_2^*$, Row 2: fluctuating $S_0$')
 ax_2.set_xlabel('Time (measurement domain)')
 ax_2.set_ylabel('signal (IV: $T_2^*$)')
@@ -83,7 +87,7 @@ ax_2.legend(loc='lower center')
 
 # S0 invariant simplex space
 ax_3 = fig.add_subplot(233)
-ax_3.set_title('(C) Aitchison norm of Multi-echo BOLD-like signal\n\
+ax_3.set_title('(C) Aitchison norm of Multi-echo HRF-like fMRI signal\n\
     (compositional descriptive in n-simplex space)')
 ax_3.set_xlabel('Time (measurement domain)')
 ax_3.set_ylabel('Aitchison norm (IV: $T_2^*$)')
@@ -100,7 +104,7 @@ ax_4.set_ylim((0, 120))
 colors = [(0, 0, 1), (0.5, 0, 0)]
 for r in [-1, 0]:  # only the smallest and biggest value for simplicity
     slc = ax_4.plot(signal_S0[r, :], lw=2, color=colors[r],
-                    label='$S_0: %i, T_2^*: %i$' % (S_0[r], T_2s[0]))
+                    label='$T_2^*=%i, S_0=%i$' % (T_2s[0], S_0[r]))
 ax_4.legend(loc='upper right')
 
 # Across measurements (hrf-like representation)
