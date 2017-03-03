@@ -198,7 +198,7 @@ def shan2014_eq6(A=[-0.2, 1.8, -1.8, 0.2], T=[0.1, 4, 10, 20],
 
 
 def posse1999_eq1(S_0, TE_n, T_2s, g=0, h=0):
-    """Posse et al. 1999, equation 1.
+    """Transverse (or spin-spin) magnetization decay (Posse et al. 1999, eq. 1).
 
     Parameters
     ----------
@@ -209,7 +209,7 @@ def posse1999_eq1(S_0, TE_n, T_2s, g=0, h=0):
     TE_n : float
         Echo time.
     T_2s : float
-        T2* is the stimulus-dependent relaxation time.
+        T2* is the stimulus-dependent relaxation (decay) time constant.
     g : float
         White noise (thermal noise and hardware instabilities).
     h : float
@@ -223,4 +223,27 @@ def posse1999_eq1(S_0, TE_n, T_2s, g=0, h=0):
 
     """
     signal = S_0 * np.exp(-TE_n/T_2s) + g + h
+    return signal
+
+
+def bloch_long_relax(M_0, t, T_1):
+    """Longitudinal (or spin-lattice) relaxation.
+
+    Parameters
+    ----------
+    M_0 : float
+        The initial signal amplitude. May vary from measurement to
+        measurement due to hardware instabilities or flow-related
+        saturation effects.
+    T_1 : float
+        T1 is the tissue dependent relaxation time constant.
+    t : float
+        Timepoints
+
+    Returns
+    -------
+    signal : float
+
+    """
+    signal = M_0 * (1 - np.exp(-t/T_1))
     return signal
