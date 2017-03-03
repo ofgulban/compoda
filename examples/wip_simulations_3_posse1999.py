@@ -68,6 +68,7 @@ ax_1.set_ylim((0, 120))
 colors = [(0.5, 0, 0), (1, 0, 0)]
 for r in [0, -1]:  # only the smallest and biggest value for simplicity
     slc = ax_1.plot(signal_T2s[r, :], lw=2, color=colors[r],
+                    markevery=selected_TE, marker='h',
                     label='$T_2^*=%i, S_0=%i$' % (T_2s[r], S_0[-1]))
 ax_1.legend(loc='upper right')
 
@@ -87,7 +88,7 @@ ax_2.legend(loc='lower center')
 
 # S0 invariant simplex space
 ax_3 = fig.add_subplot(233)
-ax_3.set_title('(C) Aitchison norm of Multi-echo HRF-like fMRI signal\n\
+ax_3.set_title('(C) Aitchison norm of Multi-echo HRF-like fMRI signal in B\n\
     (compositional descriptive in n-simplex space)')
 ax_3.set_xlabel('Time (measurement domain)')
 ax_3.set_ylabel('Aitchison norm (IV: $T_2^*$)')
@@ -104,6 +105,7 @@ ax_4.set_ylim((0, 120))
 colors = [(0, 0, 1), (0.5, 0, 0)]
 for r in [-1, 0]:  # only the smallest and biggest value for simplicity
     slc = ax_4.plot(signal_S0[r, :], lw=2, color=colors[r],
+                    markevery=selected_TE, marker='h',
                     label='$T_2^*=%i, S_0=%i$' % (T_2s[0], S_0[r]))
 ax_4.legend(loc='upper right')
 
