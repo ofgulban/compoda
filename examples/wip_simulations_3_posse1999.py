@@ -1,4 +1,4 @@
-"""Simulations of milti-echo MRI signal_T2s."""
+"""Simulations of multi-echo MRI signal_T2s."""
 
 from __future__ import division
 import numpy as np
