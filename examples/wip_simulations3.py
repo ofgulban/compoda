@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import tetrahydra.core as tet
 from tetrahydra.utils import posse1999_eq1
 
-S_0 = [100, 80, 60]
+S_0 = [120, 112, 100]
 T_2s = [40, 50, 60]
 TE_n = np.arange(0, 100)
 nr_measurements = len(T_2s)
@@ -18,7 +18,7 @@ selected_TE = [15, 30, 45]
 # The loop is explicitly following descriptions of Posse et al. 1999
 signal_T2s = np.zeros((nr_measurements, nr_TE))
 for r in range(nr_measurements):
-    signal_r = posse1999_eq1(S_0[0], TE_n, T_2s[r])  # S0 constant
+    signal_r = posse1999_eq1(S_0[-1], TE_n, T_2s[r])  # S0 constant
     signal_T2s[r, :] = signal_r
 
 # create HRF-like timeseries by appending reversed signal_T2s
@@ -40,8 +40,8 @@ for r in range(nr_measurements):
 # create HRF-like timeseries by appending reversed signal_T2s
 timeseries_S0 = np.zeros((len(selected_TE), 6))
 for r in range(len(selected_TE)):
-    timeseries_S0[r, :] = np.hstack((signal_S0[:, selected_TE[r]],
-                                     signal_S0[::-1, selected_TE[r]]))
+    timeseries_S0[r, :] = np.hstack((signal_S0[::-1, selected_TE[r]],
+                                     signal_S0[:, selected_TE[r]]))
 
 # Compositional descriptive (Aitchison norm) of signal_T2s
 bary_S0 = tet.closure(np.copy(timeseries_S0.T))
@@ -50,7 +50,7 @@ anorm_S0 = tet.aitchison_norm(bary_S0)
 # Plots -----------------------------------------------------------------------
 
 fig = plt.figure(1)
-fig.suptitle('Posse 1999, eq. 1', fontsize=14)
+fig.suptitle('Posse 1999, eq. 1', fontweight='bold')
 
 # Considering T2* effects -----------------------------------------------------
 # Across TEs
@@ -59,11 +59,12 @@ ax_1.set_title('(A) Decay of transverse magnetization across measurements,\n\
     Row 1: fluctuating $T_2^*$, Row 2: fluctuating $S_0$')
 ax_1.set_xlabel('Time (echo domain)')
 ax_1.set_ylabel('signal (IV: $TE$)')
+ax_1.set_ylim((0, 120))
 # darker red for deoxygenated blood
 colors = [(0.5, 0, 0), (1, 0, 0)]
 for r in [0, -1]:  # only the smallest and biggest value for simplicity
     slc = ax_1.plot(signal_T2s[r, :], lw=2, color=colors[r],
-                    label='$S_0: %i, T_2^*: %i$' % (S_0[0], T_2s[r]))
+                    label='$S_0: %i, T_2^*: %i$' % (S_0[-1], T_2s[r]))
 ax_1.legend(loc='upper right')
 
 # Across measurements (hrf-like representation)
@@ -72,6 +73,7 @@ ax_2.set_title('(B) Multi-echo BOLD-like signal due to\n\
     Row 1: fluctuating $T_2^*$, Row 2: fluctuating $S_0$')
 ax_2.set_xlabel('Time (measurement domain)')
 ax_2.set_ylabel('signal (IV: $T_2^*$)')
+ax_2.set_ylim(0, 90)
 # darker grey to signify drop in signal magnitude
 colors = ['0.75', '0.4', '0.1']
 for r in range(len(selected_TE)):
@@ -82,9 +84,10 @@ ax_2.legend(loc='lower center')
 # S0 invariant simplex space
 ax_3 = fig.add_subplot(233)
 ax_3.set_title('(C) Aitchison norm of Multi-echo BOLD-like signal\n\
-    across time (compositional descriptive)')
+    (compositional descriptive in n-simplex space)')
 ax_3.set_xlabel('Time (measurement domain)')
 ax_3.set_ylabel('Aitchison norm (IV: $T_2^*$)')
+ax_3.set_ylim(0, 0.60)
 slc = ax_3.plot(anorm_T2s, lw=3, color='green')
 
 # Considering S0 effects ------------------------------------------------------
@@ -92,9 +95,10 @@ slc = ax_3.plot(anorm_T2s, lw=3, color='green')
 ax_4 = fig.add_subplot(234)
 ax_4.set_xlabel('Time (echo domain)')
 ax_4.set_ylabel('signal (IV: $TE$)')
+ax_4.set_ylim((0, 120))
 # Blues for comparison to T2* curves
-colors = [(1, 0, 0), (0, 0, 1)]
-for r in [0, -1]:  # only the smallest and biggest value for simplicity
+colors = [(0, 0, 1), (0.5, 0, 0)]
+for r in [-1, 0]:  # only the smallest and biggest value for simplicity
     slc = ax_4.plot(signal_S0[r, :], lw=2, color=colors[r],
                     label='$S_0: %i, T_2^*: %i$' % (S_0[r], T_2s[0]))
 ax_4.legend(loc='upper right')
@@ -103,17 +107,19 @@ ax_4.legend(loc='upper right')
 ax_5 = fig.add_subplot(235)
 ax_5.set_xlabel('Time (measurement domain)')
 ax_5.set_ylabel('signal (IV: $S_0$)')
+ax_5.set_ylim(0, 90)
 # darker grey to signify drop in signal magnitude
 colors = ['0.75', '0.4', '0.1']
 for r in range(len(selected_TE)):
     slc = ax_5.plot(timeseries_S0[r, :], linewidth=5, color=colors[r],
                     label='$TE: %i$' % selected_TE[r])
-ax_5.legend(loc='upper center')
+ax_5.legend(loc='lower center')
 
 # S0 invariant simplex space
 ax_6 = fig.add_subplot(236)
 ax_6.set_xlabel('Time (measurement domain)')
 ax_6.set_ylabel('Aitchison norm (IV: $S_0$)')
+ax_6.set_ylim(0, 0.60)
 slc = ax_6.plot(anorm_S0, lw=3, color='orange')
 
 plt.show()
