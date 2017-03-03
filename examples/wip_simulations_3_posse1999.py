@@ -82,7 +82,7 @@ ax_2.set_ylim(0, 90)
 colors = ['0.75', '0.4', '0.1']
 for r in range(len(selected_TE)):
     slc = ax_2.plot(timeseries_T2s[r, :], linewidth=5, color=colors[r],
-                    label='$TE: %i$' % selected_TE[r])
+                    label='$TE=%i$' % selected_TE[r])
 ax_2.legend(loc='lower center')
 
 # S0 invariant simplex space
@@ -91,7 +91,7 @@ ax_3.set_title('(C) Aitchison norm of Multi-echo HRF-like fMRI signal\n\
     (compositional descriptive in n-simplex space)')
 ax_3.set_xlabel('Time (measurement domain)')
 ax_3.set_ylabel('Aitchison norm (IV: $T_2^*$)')
-ax_3.set_ylim(0, 0.60)
+ax_3.set_ylim(0, 1)
 slc = ax_3.plot(anorm_T2s, lw=3, color='green')
 
 # Considering S0 effects ------------------------------------------------------
@@ -116,14 +116,14 @@ ax_5.set_ylim(0, 90)
 colors = ['0.75', '0.4', '0.1']
 for r in range(len(selected_TE)):
     slc = ax_5.plot(timeseries_S0[r, :], linewidth=5, color=colors[r],
-                    label='$TE: %i$' % selected_TE[r])
+                    label='$TE=%i$' % selected_TE[r])
 ax_5.legend(loc='lower center')
 
 # S0 invariant simplex space
 ax_6 = fig.add_subplot(236)
 ax_6.set_xlabel('Time (measurement domain)')
 ax_6.set_ylabel('Aitchison norm (IV: $S_0$)')
-ax_6.set_ylim(0, 0.60)
+ax_6.set_ylim(0, 1)
 slc = ax_6.plot(anorm_S0, lw=3, color='orange')
 
 plt.show()
