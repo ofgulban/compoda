@@ -109,9 +109,8 @@ def progress_output(input1, input2, text=''):
     sys.stdout.flush()
 
 
-def simple_bloch(M_0=800, TI=np.arange(80, 10000), T_1=1000, TR=7000,
-                 alpha=0.95):
-    """(WIP) simple bloch equation.
+def bloch_mh(M_0=800, TI=np.arange(80, 10000), T_1=1000, TR=7000, alpha=0.95):
+    """(WIP) Bloch T1 equation.
 
     Parameters
     ----------
