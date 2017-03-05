@@ -116,11 +116,11 @@ def bloch_mh(M_0=800, TI=np.arange(80, 10000), T_1=1000, TR=7000, alpha=0.95):
     ----------
     M_0 : float
     TI : np.array, shape 1d
-        Time intervals in ms.
+        Time intervals in milliseconds.
     T_1 : float
         T1 value of a certain tissue (eg. white matter).
     TR : float
-        Repetition time in ms.
+        Repetition time in milliseconds.
     alpha : float
 
     Returns
@@ -139,6 +139,7 @@ def kundu2012_eq1(S_0, TE_n, T_2s):
     ----------
     S_0 : float
     TE_n : float
+        Time in millisecons.
     T_2s : float
 
     Returns
@@ -157,9 +158,10 @@ def hagberg2014_eq5(M_0, TE_n, T_2s, phi):
     ----------
     M_0 : float
     TE_n : float
+        Time in millisecons.
     T_2s : float
     phi : float
-        Probably in radians.
+        Phase term in radians.
 
     Returns
     -------
@@ -207,7 +209,7 @@ def posse1999_eq1(S_0, TE_n, T_2s, g=0, h=0):
         measurement due to hardware instabilities or flow-related
         saturation effects.
     TE_n : float
-        Echo time.
+        Echo time in milliseconds.
     T_2s : float
         T2* is the stimulus-dependent relaxation (decay) time constant.
     g : float
@@ -238,7 +240,7 @@ def bloch_long_relax(M_0, t, T_1):
     T_1 : float
         T1 is the tissue dependent relaxation time constant.
     t : float
-        Timepoints
+        Time in millisecons.
 
     Returns
     -------
