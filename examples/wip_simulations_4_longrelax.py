@@ -68,7 +68,7 @@ colors = ['0.6', '0.25']
 for r in [0, -1]:  # only the smallest and biggest value for simplicity
     slc = ax_1.plot(signal_T1[r, :], lw=2, color=colors[r],
                     markevery=selected_TI, marker='h',
-                    label='$M_0=%i, T_1=%i$' % (M_0[-1], T_1[r]))
+                    label='$T_1=%i,\ M_0=%i$' % (T_1[r], M_0[-1]))
 ax_1.legend(loc='lower right')
 
 # Across voxels ("WM to GM transition" representation)
@@ -106,7 +106,7 @@ colors = [[0.2, 0.2, 1], '0.6']
 for r in [-1, 0]:  # only the smallest and biggest value for simplicity
     slc = ax_4.plot(signal_M0[r, :], lw=2, color=colors[r],
                     markevery=selected_TI, marker='h',
-                    label='$M_0=%i, T_1=%i$' % (M_0[r], T_1[0]))
+                    label='$T_1=%i,\ M_0=%i$' % (T_1[0], M_0[r]))
 ax_4.legend(loc='lower right')
 
 # Across voxels ("WM to GM transition" representation)

@@ -69,7 +69,7 @@ colors = [(0.5, 0, 0), (1, 0, 0)]
 for r in [0, -1]:  # only the smallest and biggest value for simplicity
     slc = ax_1.plot(signal_T2s[r, :], lw=2, color=colors[r],
                     markevery=selected_TE, marker='h',
-                    label='$T_2^*=%i, S_0=%i$' % (T_2s[r], S_0[-1]))
+                    label='$T_2^*=%i,\ S_0=%i$' % (T_2s[r], S_0[-1]))
 ax_1.legend(loc='upper right')
 
 # Across measurements (hrf-like representation)
@@ -106,7 +106,7 @@ colors = [(0, 0, 1), (0.5, 0, 0)]
 for r in [-1, 0]:  # only the smallest and biggest value for simplicity
     slc = ax_4.plot(signal_S0[r, :], lw=2, color=colors[r],
                     markevery=selected_TE, marker='h',
-                    label='$T_2^*=%i, S_0=%i$' % (T_2s[0], S_0[r]))
+                    label='$T_2^*=%i,\ S_0=%i$' % (T_2s[0], S_0[r]))
 ax_4.legend(loc='upper right')
 
 # Across measurements (hrf-like representation)
