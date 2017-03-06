@@ -250,15 +250,47 @@ def clr_transformation(data):
 
     Returns
     -------
-    out : 2d numpy array, shape [n_samples, n_coordinates-1]
+    out : 2d numpy array, shape [n_samples, n_coordinates]
         Coordinates in real space.
+
+    Reference
+    ---------
+    [1] Pawlowsky-Glahn, V., Egozcue, J. J., & Tolosana-Delgado, R.
+        (2015). Modelling and Analysis of Compositional Data, pg. 34.
+        Chichester, UK: John Wiley & Sons, Ltd.
+        DOI: 10.1002/9781119003144
 
     """
     dims = data.shape
-    out = np.zeros([dims[0], dims[1]-1])
+    out = np.zeros([dims[0], dims[1]])
     g = geometric_mean(data)
-    for i in range(dims[1]-1):
+    for i in range(dims[1]):
         out[:, i] = np.log(data[:, i]/g)
+    return out
+
+
+def inverse_clr_transformation(data):
+    """Inverse centered logratio transformation.
+
+    Parameters
+    ----------
+    data : 2d numpy array, shape [n_samples, n_coordinates]
+        Centered logratio coordinates in real space.
+
+    Returns
+    -------
+    out : 2d numpy array, shape [n_samples, n_coordinates+1]
+        Barycentric coordinates (closed) in simplex space.
+
+    Reference
+    ---------
+    [1] Pawlowsky-Glahn, V., Egozcue, J. J., & Tolosana-Delgado, R.
+        (2015). Modelling and Analysis of Compositional Data, pg. 34.
+        Chichester, UK: John Wiley & Sons, Ltd.
+        DOI: 10.1002/9781119003144
+
+    """
+    out = closure(np.exp(data))
     return out
 
 
