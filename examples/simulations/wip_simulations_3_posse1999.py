@@ -33,6 +33,12 @@ for r in range(len(selected_TE)):
 bary_T2s = tet.closure(np.copy(timeseries_T2s.T))
 anorm_T2s = tet.aitchison_norm(bary_T2s)
 
+# NOTE: there is a linear relationship between R_2 values and euclidean norms
+# of isometric logratio transformed compositional coordinates!
+ilr = tet.ilr_transformation(bary_T2s)
+enorm = np.sqrt(np.sum(ilr**2, axis=1))
+(1/selected_T2s)/enorm  # <<< !!!
+
 # Considering S0 effects ------------------------------------------------------
 signal_S0 = np.zeros((nr_measurements, nr_TE))
 for r in range(nr_measurements):
