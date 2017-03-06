@@ -212,6 +212,13 @@ def alr_transformation(data):
     out : 2d numpy array, shape [n_samples, n_coordinates-1]
         Coordinates in real space.
 
+    Reference
+    ---------
+    [1] Pawlowsky-Glahn, V., Egozcue, J. J., & Tolosana-Delgado, R.
+        (2015). Modelling and Analysis of Compositional Data, pg. 46.
+        Chichester, UK: John Wiley & Sons, Ltd.
+        DOI: 10.1002/9781119003144
+
     """
     dims = data.shape
     out = np.zeros([dims[0], dims[1]-1])
@@ -232,6 +239,13 @@ def inverse_alr_transformation(data):
     -------
     out : 2d numpy array, shape [n_samples, n_coordinates+1]
         Barycentric coordinates (closed) in simplex space.
+
+    Reference
+    ---------
+    [1] Pawlowsky-Glahn, V., Egozcue, J. J., & Tolosana-Delgado, R.
+        (2015). Modelling and Analysis of Compositional Data, pg. 47.
+        Chichester, UK: John Wiley & Sons, Ltd.
+        DOI: 10.1002/9781119003144
 
     """
     dims = data.shape
@@ -307,6 +321,13 @@ def ilr_transformation(data):
     out : 2d numpy array, shape [n_samples, n_coordinates-1]
         Coordinates in real space.
 
+    Reference
+    ---------
+    [1] Pawlowsky-Glahn, V., Egozcue, J. J., & Tolosana-Delgado, R.
+        (2015). Modelling and Analysis of Compositional Data, pg. 37.
+        Chichester, UK: John Wiley & Sons, Ltd.
+        DOI: 10.1002/9781119003144
+
     """
     dims = data.shape
     out = np.zeros((dims[0], dims[1]-1))
@@ -328,6 +349,13 @@ def inverse_ilr_transformation(data):
     -------
     out : 2d numpy array, shape [n_samples, n_coordinates+1]
         Barycentric coordinates (closed) in simplex space.
+
+    Reference
+    ---------
+    [1] Pawlowsky-Glahn, V., Egozcue, J. J., & Tolosana-Delgado, R.
+        (2015). Modelling and Analysis of Compositional Data, pg. 37.
+        Chichester, UK: John Wiley & Sons, Ltd.
+        DOI: 10.1002/9781119003144
 
     """
     dims = data.shape
