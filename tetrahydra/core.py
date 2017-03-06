@@ -199,13 +199,13 @@ def geometric_mean(data):
     return np.power(gmean, 1.0/dims[1])
 
 
-def alr_transforation(data):
+def alr_transformation(data):
     """Additive logratio transformation.
 
     Parameters
     ----------
     data : 2d numpy array, shape [n_samples, n_coordinates]
-        Barycentric coordinates (closed) of data in simplex space.
+        Barycentric coordinates (closed) in simplex space.
 
     Returns
     -------
@@ -216,17 +216,37 @@ def alr_transforation(data):
     dims = data.shape
     out = np.zeros([dims[0], dims[1]-1])
     for i in range(dims[1]-1):
-        out[:, i] = data[:, i]/dims[1]
+        out[:, i] = np.log(data[:, i]/data[:, -1])
     return out
 
 
-def clr_transforation(data):
+def inverse_alr_transformation(data):
+    """Inverse additive logratio transformation.
+
+    Parameters
+    ----------
+    data : 2d numpy array, shape [n_samples, n_coordinates]
+        Additive log-ratio transformed coordinates in real space.
+
+    Returns
+    -------
+    out : 2d numpy array, shape [n_samples, n_coordinates+1]
+        Barycentric coordinates (closed) in simplex space.
+
+    """
+    dims = data.shape
+    out = np.zeros([dims[0], dims[1]+1])
+    out[:, 0:dims[1]] = data
+    return closure(np.exp(out))
+
+
+def clr_transformation(data):
     """Centered logratio transformation.
 
     Parameters
     ----------
     data : 2d numpy array, shape [n_samples, n_coordinates]
-        Barycentric coordinates (closed) of data in simplex space.
+        Barycentric coordinates (closed) in simplex space.
 
     Returns
     -------
@@ -248,7 +268,7 @@ def ilr_transformation(data):
     Parameters
     ----------
     data : 2d numpy array, shape [n_samples, n_coordinates]
-        Barycentric coordinates (closed) of data in simplex space.
+        Barycentric coordinates (closed) in simplex space.
 
     Returns
     -------
@@ -270,12 +290,12 @@ def inverse_ilr_transformation(data):
     Parameters
     ----------
     data : 2d numpy array, shape [n_samples, n_coordinates]
-        Coordinates in real space.
+        Isometric log-ratio transformed coordinates in real space.
 
     Returns
     -------
-    out : 2d numpy array, shape [n_samples, n_coordinates-1]
-        Barycentric coordinates (closed) of data in simplex space.
+    out : 2d numpy array, shape [n_samples, n_coordinates+1]
+        Barycentric coordinates (closed) in simplex space.
 
     """
     dims = data.shape
