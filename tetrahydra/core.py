@@ -264,6 +264,28 @@ def ilr_transformation(data):
     return out
 
 
+def inverse_ilr_transformation(data):
+    """Inverse isometric logratio transformation (not vectorized).
+
+    Parameters
+    ----------
+    data : 2d numpy array, shape [n_samples, n_coordinates]
+        Coordinates in real space.
+
+    Returns
+    -------
+    out : 2d numpy array, shape [n_samples, n_coordinates-1]
+        Barycentric coordinates (closed) of data in simplex space.
+
+    """
+    dims = data.shape
+    out = np.zeros((dims[0], dims[1]+1))
+    helmertian = helmert(dims[1]+1)
+    for i in range(data.shape[0]):
+        out[i, :] = np.exp(np.dot(data[i, :], helmertian))
+    return closure(out)
+
+
 def sample_center(data):
     """Sample center.
 
