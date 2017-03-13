@@ -14,7 +14,7 @@ nr_measurements = len(T_1)
 nr_TI = len(TI)
 selected_TI = [500, 900, 1300, 1700]
 # quick WMGM-interface-like sampling
-selected_T1s = np.array([1400, 1000, 800])
+selected_T1s = np.array([1400, 1100, 800, 500, 200])
 selected_M0s = np.array([80, 95, 100])
 
 # Considering T1 effects -----------------------------------------------------
@@ -32,6 +32,23 @@ for r in range(len(selected_TI)):
 # Compositional descriptive (Aitchison norm) of signal_T1
 bary_T1 = tet.closure(np.copy(timeseries_T1.T))
 anorm_T1 = tet.aitchison_norm(bary_T1)
+
+# NOTE: there is a non-linear(exp??) relationship between R_1 values and euclidean norm
+# of isometric logratio transformed compositional coordinates!
+ilr = tet.ilr_transformation(bary_T1)
+enorm = np.sqrt(np.sum(ilr**2, axis=1))
+(1/selected_T1s)/anorm_T1  # <<< !!!
+
+enorm[3] - enorm[4]
+enorm[2] - enorm[3]
+enorm[1] - enorm[2]
+enorm[0] - enorm[1]
+
+
+x = selected_T1s[1] - selected_T1s[2]
+y = selected_T1s[0] - selected_T1s[1]
+y/x
+
 
 # Considering M0 effects ------------------------------------------------------
 signal_M0 = np.zeros((nr_measurements, nr_TI))
