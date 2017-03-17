@@ -4,51 +4,50 @@ import os
 import numpy as np
 from __future__ import division
 from nibabel import Nifti1Image, load, save
-from tetrahydra.core import aitchison_dist, aitchison_dist
+from tetrahydra.core import aitchison_norm, aitchison_dist, closure
 from tetrahydra.utils import truncate_and_scale
 
 
 np.seterr(divide='ignore', invalid='ignore')
 
 # Load data
-vol1 = load('/home/faruk/Data/Faruk/T1_ANISO.nii.gz')
-vol2 = load('/home/faruk/Data/Faruk/PD_ANISO.nii.gz')
-vol3 = load('/home/faruk/Data/Faruk/T2s_ANISO.nii.gz')
-vol4 = load('/home/faruk/Data/Faruk/T1SI_ANISO.nii.gz')
+vol1 = load('/media/Data_Drive/Benchmark_Data/compositional_data/Valentin/GRE/05deg.nii.gz')
+vol2 = load('/media/Data_Drive/Benchmark_Data/compositional_data/Valentin/GRE/10deg.nii.gz')
+vol3 = load('/media/Data_Drive/Benchmark_Data/compositional_data/Valentin/GRE/15deg.nii.gz')
+
+nr_vol = 3  # TODO: get rid of this
 
 # Prepare headers.
 basename = vol1.get_filename().split(os.extsep, 1)[0]
 dirname = os.path.dirname(vol1.get_filename())
 niiHeader, niiAffine = vol1.header, vol1.affine
-shape = vol1.shape + (4,)
+shape = vol1.shape + (nr_vol,)
 
 # hold the data in a list for preprocessing
 volumes = []
 volumes.append(vol1.get_data())
 volumes.append(vol2.get_data())
 volumes.append(vol3.get_data())
-volumes.append(vol4.get_data())
+# volumes.append(vol4.get_data())
 
 
 # Imputing, considering uint16 precision, replace 0 with 1
 for i in range(len(volumes)):
-    volumes[i][volumes[i] == 0] = 1
+    volumes[i][volumes[i] == 0] = 1.
 
-# Normalize(0-1), truncate if needed
-for i in range(len(volumes)):
-    volumes[i] = truncate_and_scale(volumes[i], percMin=0, percMax=100)
+# (optional) Normalize(0-1)
+# for i in range(len(volumes)):
+#     volumes[i] = truncate_and_scale(volumes[i], percMin=0, percMax=100)
 
 # reshape data as 4D images (spatial indices of voxels and type of image)
-rgb = np.asarray(volumes)
+rgb = np.asarray(volumes, dtype="float")
 rgb = np.transpose(rgb, axes=[1, 2, 3, 0])
 
 # flatten for more intuitive format because voxel-wise nature of operations.
 rgb = rgb.reshape(shape[0]*shape[1]*shape[2], shape[3])
 
 # closure (to 1)
-rgb_sum = np.sum(rgb, axis=1)
-for dim in range(rgb.shape[1]):
-    rgb[:, dim] = rgb[:, dim] / rgb_sum
+closure(rgb)
 
 # compute aitchison norm
 test = aitchison_norm(rgb)
