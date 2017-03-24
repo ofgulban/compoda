@@ -8,9 +8,9 @@ from nibabel import load, save, Nifti1Image
 
 """Load Data"""
 #
-nii1 = load('/home/faruk/Data/Faruk/bias_corr/T1_restore.nii.gz')
-nii2 = load('/home/faruk/Data/Faruk/bias_corr/PD_restore.nii.gz')
-nii3 = load('/home/faruk/Data/Faruk/bias_corr/T2s_restore.nii.gz')
+nii1 = load('/home/faruk/Data/brainweb/no_noise/t1_icbm_normal_1mm_pn0_rf0.nii.gz')
+nii2 = load('/home/faruk/Data/brainweb/no_noise/pd_icbm_normal_1mm_pn0_rf0.nii.gz')
+nii3 = load('/home/faruk/Data/brainweb/no_noise/t2_icbm_normal_1mm_pn0_rf0.nii.gz')
 
 basename = nii1.get_filename().split(os.extsep, 1)[0]
 dirname = os.path.dirname(nii1.get_filename())
@@ -41,7 +41,7 @@ ilr = ilr.reshape(dims[0], dims[1], dims[2], dims[3]-1)
 # save the new coordinates
 for i in range(ilr.shape[-1]):
     img = ilr[..., i]
-    # scale is done for FSL-FAST otherwise it cannot find clusters 
+    # scale is done for FSL-FAST otherwise it cannot find clusters
     img = truncate_and_scale(img, percMin=0, percMax=100, zeroTo=2000)
     out = Nifti1Image(img, affine=nii1.affine)
     save(out, os.path.join(dirname, 'ilr_coord_'+str(i+1)+'.nii.gz'))
