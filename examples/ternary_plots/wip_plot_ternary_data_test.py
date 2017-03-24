@@ -4,23 +4,23 @@ import os
 import ternary
 import numpy as np
 from nibabel import load
-from tetrahydra.core import (closure, perturbation,
+from tetrahydra.core import (closure, perturb,
                              sample_center, sample_total_variance)
 from tetrahydra.utils import truncate_and_scale
 np.seterr(divide='ignore', invalid='ignore')
 
 # Load data
-nii1 = load('/home/faruk/Data/benedikt/echo_1.nii.gz')
-nii2 = load('/home/faruk/Data/benedikt/echo_2.nii.gz')
-nii3 = load('/home/faruk/Data/benedikt/echo_3.nii.gz')
+nii1 = load('/home/faruk/Data/brainweb/no_noise/t1_icbm_normal_1mm_pn0_rf0.nii.gz')
+nii2 = load('/home/faruk/Data/brainweb/no_noise/pd_icbm_normal_1mm_pn0_rf0.nii.gz')
+nii3 = load('/home/faruk/Data/brainweb/no_noise/t2_icbm_normal_1mm_pn0_rf0.nii.gz')
 
 basename = nii1.get_filename().split(os.extsep, 1)[0]
 dirname = os.path.dirname(nii1.get_filename())
 
 v = 0
-vol1 = nii1.get_data()[..., v]
-vol2 = nii2.get_data()[..., v]
-vol3 = nii3.get_data()[..., v]
+vol1 = nii1.get_data()[..., :]
+vol2 = nii2.get_data()[..., :]
+vol3 = nii3.get_data()[..., :]
 shape = vol1.shape + (3,)
 
 # Preprocess
@@ -43,7 +43,7 @@ comp = closure(comp)
 # Centering
 center = sample_center(comp)
 test = np.ones(comp.shape) * center
-comp = perturbation(comp, center**-1)
+comp = perturb(comp, center**-1)
 
 # Scale data if needed
 scale = 50  # increase this for more resolution in ternary plot
