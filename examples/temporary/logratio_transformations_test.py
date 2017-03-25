@@ -35,12 +35,12 @@ data[600:610, 0] = 100
 data[600:610, 1] = temp[5::10]
 data[610:620, 1] = 100
 data[610:620, 0] = temp[5::10]
-# constant primary color 1, increasing primary color 2 mixture and vice versa
+# constant primary color 2, increasing primary color 3 mixture and vice versa
 data[620:630, 1] = 100
 data[620:630, 2] = temp[5::10]
 data[630:640, 2] = 100
 data[630:640, 1] = temp[5::10]
-# constant primary color 1, increasing primary color 2 mixture and vice versa
+# constant primary color 3, increasing primary color 1 mixture and vice versa
 data[640:650, 2] = 100
 data[640:650, 0] = temp[5::10]
 data[650:660, 0] = 100
