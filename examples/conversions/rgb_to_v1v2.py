@@ -10,11 +10,12 @@ from nibabel import load, save, Nifti1Image
 
 """Load Data"""
 #
-nii1 = load('/home/faruk/Data/brainweb/source/t1_icbm_normal_1mm_pn3_rf0.nii.gz')
-nii2 = load('/home/faruk/Data/brainweb/source/pd_icbm_normal_1mm_pn3_rf0.nii.gz')
-nii3 = load('/home/faruk/Data/brainweb/source/t2_icbm_normal_1mm_pn3_rf0.nii.gz')
+nii1 = load('/home/faruk/Data/brainweb/derived/smoothing_effect/t1_icbm_normal_1mm_pn9_rf0_s1.nii.gz')
+nii2 = load('/home/faruk/Data/brainweb/derived/smoothing_effect/pd_icbm_normal_1mm_pn9_rf0_s1.nii.gz')
+nii3 = load('/home/faruk/Data/brainweb/derived/smoothing_effect/t2_icbm_normal_1mm_pn9_rf0_s1.nii.gz')
 
-mask = load("/home/faruk/Data/brainweb/derived/phantom_brain.nii.gz").get_data()
+# mask = load('/home/faruk/Data/brainweb/source/tissues/phantom_1mm_normal_crisp.nii.gz').get_data()
+mask = load("/home/faruk/Data/brainweb/derived/ground_truth/phantom_brain.nii.gz").get_data()
 # mask = load("/home/faruk/Data/Faruk/brain_mask.nii.gz").get_data()
 mask[mask > 0] = 1.  # binarize
 
@@ -54,7 +55,7 @@ p_comp = tet.perturb(p_comp, c_temp**-1)
 ilr = tet.ilr_transformation(p_comp)
 
 # Plot 2D histogram of ilr transformed data
-plt.hist2d(ilr[:, 0], ilr[:, 1], bins=500, norm=LogNorm(),  # vmax=100,
+plt.hist2d(ilr[:, 0], ilr[:, 1], bins=2000, norm=LogNorm(),  # vmax=100,
            cmap='inferno')
 plt.xlabel('$v_1$')
 plt.ylabel('$v_2$')
