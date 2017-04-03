@@ -10,13 +10,11 @@ from nibabel import load, save, Nifti1Image
 
 """Load Data"""
 #
-nii1 = load('/home/faruk/Data/brainweb/derived/smoothing_effect/t1_icbm_normal_1mm_pn9_rf0_s1.nii.gz')
-nii2 = load('/home/faruk/Data/brainweb/derived/smoothing_effect/pd_icbm_normal_1mm_pn9_rf0_s1.nii.gz')
-nii3 = load('/home/faruk/Data/brainweb/derived/smoothing_effect/t2_icbm_normal_1mm_pn9_rf0_s1.nii.gz')
+nii1 = load('/home/faruk/Data/Faruk/M01/derived/composition/M01_T1w_bet_nosub_msr.nii.gz')
+nii2 = load('/home/faruk/Data/Faruk/M01/derived/composition/M01_PD_bet_nosub_msr.nii.gz')
+nii3 = load('/home/faruk/Data/Faruk/M01/derived/composition/M01_T2s_bet_nosub_msr.nii.gz')
 
-# mask = load('/home/faruk/Data/brainweb/source/tissues/phantom_1mm_normal_crisp.nii.gz').get_data()
-mask = load("/home/faruk/Data/brainweb/derived/ground_truth/phantom_brain.nii.gz").get_data()
-# mask = load("/home/faruk/Data/Faruk/brain_mask.nii.gz").get_data()
+mask = load("/home/faruk/Data/Faruk/M01/derived/masks/subcortical_mask_inv.nii.gz").get_data()
 mask[mask > 0] = 1.  # binarize
 
 basename = nii1.get_filename().split(os.extsep, 1)[0]
@@ -45,8 +43,8 @@ p_mask = mask.reshape(dims[0]*dims[1]*dims[2])
 p_comp = comp[p_mask > 0]
 
 # Centering
-# center = tet.sample_center(p_comp)
-center = np.array([[ 0.06521165,  0.66942364,  0.26536471]])  # 0 noise center
+center = tet.sample_center(p_comp)
+# center = np.array([[ 0.06521165,  0.66942364,  0.26536471]])  # 0 noise center
 print "Sample center: " + str(center)
 c_temp = np.ones(p_comp.shape) * center
 p_comp = tet.perturb(p_comp, c_temp**-1)
@@ -80,7 +78,7 @@ plt.scatter(pri[100:200, 0], pri[100:200, 1], color='green', s=3)
 plt.scatter(pri[200:300, 0], pri[200:300, 1], color='blue', s=3)
 plt.show()
 
-
+print('Exporting ilr coordinates.')
 # Isometric logratio transformation for nifti output
 ilr = tet.ilr_transformation(comp)
 
