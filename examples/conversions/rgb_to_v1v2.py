@@ -10,11 +10,11 @@ from nibabel import load, save, Nifti1Image
 
 """Load Data"""
 #
-nii1 = load('/home/faruk/Data/Faruk/M01/derived/composition/M01_T1w_bet_nosub_msr.nii.gz')
-nii2 = load('/home/faruk/Data/Faruk/M01/derived/composition/M01_PD_bet_nosub_msr.nii.gz')
-nii3 = load('/home/faruk/Data/Faruk/M01/derived/composition/M01_T2s_bet_nosub_msr.nii.gz')
+nii1 = load('/home/faruk/Data/Faruk/M01/derived/composition/M01_T1w_msr.nii.gz')
+nii2 = load('/home/faruk/Data/Faruk/M01/derived/composition/M01_PD_msr.nii.gz')
+nii3 = load('/home/faruk/Data/Faruk/M01/derived/composition/M01_T2s_msr.nii.gz')
 
-mask = load("/home/faruk/Data/Faruk/M01/derived/masks/subcortical_mask_inv.nii.gz").get_data()
+mask = load("/home/faruk/Data/Faruk/M01/derived/masks/brain_nosub_mask.nii.gz").get_data()
 mask[mask > 0] = 1.  # binarize
 
 basename = nii1.get_filename().split(os.extsep, 1)[0]
@@ -48,6 +48,9 @@ center = tet.sample_center(p_comp)
 print "Sample center: " + str(center)
 c_temp = np.ones(p_comp.shape) * center
 p_comp = tet.perturb(p_comp, c_temp**-1)
+# Standardize
+totvar = tet.sample_total_variance(p_comp, center)
+p_comp = tet.power(p_comp, np.power(totvar, -1./2.))
 
 # Isometric logratio transformation for plotting
 ilr = tet.ilr_transformation(p_comp)
@@ -78,8 +81,13 @@ plt.scatter(pri[100:200, 0], pri[100:200, 1], color='green', s=3)
 plt.scatter(pri[200:300, 0], pri[200:300, 1], color='blue', s=3)
 plt.show()
 
-print('Exporting ilr coordinates.')
-# Isometric logratio transformation for nifti output
+print('Exporting ilr coordinates...')
+# ilr transformation for nifti output (also considering unplotted data)
+# Centering
+c_temp = np.ones(comp.shape) * center
+comp = tet.perturb(comp, c_temp**-1)
+# Standardize
+comp = tet.power(comp, np.power(totvar, -1./2.))
 ilr = tet.ilr_transformation(comp)
 
 # save the new coordinates
@@ -88,7 +96,7 @@ for i in range(ilr.shape[-1]):
     img = ilr[..., i]
     # scale is done for FSL-FAST otherwise it cannot find clusters
     img = truncate_and_scale(img, percMin=0, percMax=100, zeroTo=2000)
-    img = img * mask  # swap masked and imputed regions with zeros
+    # img[mask == 0] = 0  # swap masked and imputed regions with zeros
     out = Nifti1Image(img, affine=nii1.affine)
     save(out, os.path.join(dirname, 'ilr_coord_'+str(i+1)+'.nii.gz'))
 
