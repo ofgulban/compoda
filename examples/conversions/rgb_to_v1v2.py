@@ -10,11 +10,11 @@ from nibabel import load, save, Nifti1Image
 
 """Load Data"""
 #
-nii1 = load('/home/faruk/Data/Faruk/M01/derived/composition/M01_T1w_msr.nii.gz')
-nii2 = load('/home/faruk/Data/Faruk/M01/derived/composition/M01_PD_msr.nii.gz')
-nii3 = load('/home/faruk/Data/Faruk/M01/derived/composition/M01_T2s_msr.nii.gz')
+nii1 = load('/home/faruk/Data/Faruk/M01/source/M01_T1w_aniso_msr.nii.gz')
+nii2 = load('/home/faruk/Data/Faruk/M01/source/M01_PD_aniso_msr.nii.gz')
+nii3 = load('/home/faruk/Data/Faruk/M01/source/M01_T2s_aniso_msr.nii.gz')
 
-mask = load("/home/faruk/Data/Faruk/M01/derived/masks/brain_nosub_mask.nii.gz").get_data()
+mask = load("/home/faruk/Data/Faruk/M01/derived/masks/brain_nosub_mask_2.nii.gz").get_data()
 mask[mask > 0] = 1.  # binarize
 
 basename = nii1.get_filename().split(os.extsep, 1)[0]
