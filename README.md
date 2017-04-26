@@ -1,7 +1,9 @@
 [![DOI](https://zenodo.org/badge/78312374.svg)](https://zenodo.org/badge/latestdoi/78312374)
 
 # Tetrahydra
-Simplex based tools to analyze multi-channel MR images as compositional data.
+![logo](./misc/logo.svg)
+
+Compositional data analysis tools for multi-contrast MR images.
 
 ## Dependencies
 
