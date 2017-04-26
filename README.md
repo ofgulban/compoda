@@ -1,7 +1,7 @@
 [![DOI](https://zenodo.org/badge/78312374.svg)](https://zenodo.org/badge/latestdoi/78312374)
 
 # Tetrahydra
-![](/misc/logo.svg?raw=true)
+![](https://raw.github.com/ofgulban/tetrahydra/master/misc/logo.svg)
 
 Compositional data analysis tools for multi-contrast MR images.
 
