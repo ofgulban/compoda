@@ -16,8 +16,8 @@
    inkscape:version="0.48.5 r10040"
    sodipodi:docname="logo.svg"
    inkscape:export-filename="/home/faruk/Git/tetrahydra/misc/logo.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+   inkscape:export-xdpi="900"
+   inkscape:export-ydpi="900">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -27,9 +27,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="88.142044"
-     inkscape:cy="117.68902"
+     inkscape:zoom="7.9195959"
+     inkscape:cx="133.05627"
+     inkscape:cy="75.084941"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -119,21 +119,10 @@
            transform="matrix(1.0623558,-0.01280762,0.01280762,1.0623558,-151.91518,-864.63025)"
            id="g5260">
           <path
-             inkscape:connector-curvature="0"
-             id="path5262"
-             d="M 523.38968,696.40762 650.52471,569.27259 755.79209,751.60103 z"
-             style="fill:#ffffff;stroke:none;display:inline" />
-          <path
-             inkscape:connector-curvature="0"
-             id="path5264"
-             d="m 650.52471,569.27259 86.2702,82.63777 18.99718,99.69067 z"
-             style="fill:#ffffff;stroke:none;display:inline" />
-          <path
-             inkscape:connector-curvature="0"
-             id="path5266"
-             d="m 523.38968,696.40762 116.36929,116.3693 50.15002,-77.07417 z"
              style="fill:#ffffff;stroke:none;display:inline"
-             sodipodi:nodetypes="cccc" />
+             d="M 139.875 107.53125 L 79.375 169.5 L 136.125 224.90625 L 159.75 187.5625 L 191.65625 194.75 L 181.9375 146.84375 L 139.875 107.53125 z "
+             transform="matrix(2.0754248,0.02502104,-0.02502104,2.0754248,362.90086,342.62008)"
+             id="path5262" />
         </g>
         <g
            id="g5268"
@@ -175,21 +164,10 @@
              transform="matrix(-1.0770189,-0.0031486,-0.0031486,1.0770189,837.44473,20.474772)"
              id="g5282">
             <path
-               inkscape:connector-curvature="0"
-               id="path5284"
-               d="M 523.38968,696.40762 650.52471,569.27259 755.79209,751.60103 z"
-               style="fill:#ffffff;stroke:none;display:inline" />
-            <path
-               inkscape:connector-curvature="0"
-               id="path5286"
-               d="m 650.52471,569.27259 86.2702,82.63777 18.99718,99.69067 z"
-               style="fill:#ffffff;stroke:none;display:inline" />
-            <path
-               inkscape:connector-curvature="0"
-               id="path5288"
-               d="m 523.38968,696.40762 116.36929,116.3693 50.15002,-77.07417 z"
                style="fill:#ffffff;stroke:none;display:inline"
-               sodipodi:nodetypes="cccc" />
+               d="M 72.0625 40.15625 L 29.8125 80.40625 L 20.40625 129.0625 L 52.65625 121.5 L 76.96875 159.09375 L 134 102.4375 L 72.0625 40.15625 z "
+               transform="matrix(-2.0474489,-0.00598559,-0.00598559,2.0474489,798.33065,487.47049)"
+               id="path5284" />
           </g>
           <g
              id="g5290">
@@ -232,20 +210,9 @@
              style="fill:#ffffff">
             <path
                style="fill:#ffffff;stroke:none;display:inline"
-               d="M 523.38968,696.40762 650.52471,569.27259 755.79209,751.60103 z"
-               id="path5306"
-               inkscape:connector-curvature="0" />
-            <path
-               style="fill:#ffffff;stroke:none;display:inline"
-               d="m 650.52471,569.27259 86.2702,82.63777 18.99718,99.69067 z"
-               id="path5308"
-               inkscape:connector-curvature="0" />
-            <path
-               sodipodi:nodetypes="cccc"
-               style="fill:#ffffff;stroke:none;display:inline"
-               d="m 523.38968,696.40762 116.36929,116.3693 50.15002,-77.07417 z"
-               id="path5310"
-               inkscape:connector-curvature="0" />
+               d="M 175.4375 8.9375 L 112.78125 71.21875 L 169.78125 128.5625 L 194.46875 90.875 L 226.875 98.6875 L 217.6875 49.6875 L 175.4375 8.9375 z "
+               transform="matrix(2.0357216,-0.00636502,0.00636502,2.0357216,293.31804,552.16569)"
+               id="path5306" />
           </g>
           <g
              id="g5312">
