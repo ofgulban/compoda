@@ -3,7 +3,9 @@
 # Tetrahydra
 <img src="/misc/logo.png" width="450">
 
-Compositional data analysis tools for multi-contrast MR images.
+Compositional data analysis tools for multi-modal images.
+
+Currently, this library is primarily being developed for (but not limited to) magnetic resonance images with multiple contrasts.
 
 ## Dependencies
 
