@@ -22,7 +22,6 @@ Currently, this library is primarily being developed for (but not limited to) ma
 |---------------------------------------------------------|----------------|
 | [matplotlib](http://matplotlib.org/)                    | 1.5.3          |
 | [NiBabel](http://nipy.org/nibabel/)                     | 2.1.0          |
-| [ternary](https://github.com/marcharper/python-ternary) | 1.0            |
 
 
 ## Installation & Quick Start
