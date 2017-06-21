@@ -1,7 +1,8 @@
 [![DOI](https://zenodo.org/badge/78312374.svg)](https://zenodo.org/badge/latestdoi/78312374)
 
 # Tetrahydra
-<img src="/misc/logo.png" width="450">
+
+<img src="/misc/logo.png" width="450" align"right" />
 
 Compositional data analysis tools for multi-modal images.
 
