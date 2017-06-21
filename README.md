@@ -2,7 +2,7 @@
 
 # Tetrahydra
 
-<img src="/misc/logo.png" width="450" align"right" />
+<img src="/misc/logo.png" width="450" align="right" />
 
 Compositional data analysis tools for multi-modal images.
 
