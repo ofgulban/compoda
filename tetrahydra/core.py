@@ -47,7 +47,7 @@ def closure(data, k=1.0):
     """
     data_sum = np.sum(data, axis=1)
     for i in range(data.shape[1]):
-        data[:, i] /= data_sum
+        np.divide(data[:, i], data_sum, out=data[:, i])
     return data * k
 
 
