@@ -51,7 +51,7 @@ def closure(data, k=1.0):
     return data * k
 
 
-def perturb(x, y):
+def perturb(x, y, reclose=True):
     """Perturbation (analogous to addition in real space).
 
     Parameters
@@ -59,6 +59,8 @@ def perturb(x, y):
     x, y: 2d numpy array, shape [n_samples, n_measurements]
         Input x will be perturbed by y. Use y**-1 as the second input for
         perturbation difference (analogous to subtraction in real space).
+    reclose: bool
+        Apply closure to the compositions after perturbation. True by default.
 
     Returns
     -------
@@ -73,11 +75,11 @@ def perturb(x, y):
         DOI: 10.1002/9781119003144
 
     """
-    out = closure(x * y)
-    return out
+    out = x * y
+    return closure(out) if reclose else out
 
 
-def power(x, a):
+def power(x, a, reclose=True):
     """Powering transformation (analogous to multiplication in real space).
 
     Parameters
@@ -86,6 +88,8 @@ def power(x, a):
         Input x will be powered by a.
     a : float
         Constant, real number.
+    reclose: bool
+        Apply closure to the compositions after powering. True by default.
 
     Returns
     -------
@@ -100,8 +104,8 @@ def power(x, a):
         DOI: 10.1002/9781119003144
 
     """
-    out = closure(np.power(x, a))
-    return out
+    out = np.power(x, a)
+    return closure(out) if reclose else out
 
 
 def aitchison_inner_product(x, y):
