@@ -11,7 +11,7 @@ except ImportError:
     from distutils.core import setup
 
 setup(name='tetrahydra',
-      version='0.0.1',
+      version='0.1.0',
       description='Compositional data methods for MRI data.',
       url='https://github.com/ofgulban/tetrahydra',
       download_url='',
