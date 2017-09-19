@@ -1,3 +1,4 @@
+sudo: false
 language: python
 python:
   - 2.7
@@ -7,7 +8,6 @@ install:
   - python setup.py develop
 # command to run tests
 script:
-  - py.test
+  - py.test --cov=./
 after_success:
-  - codecov --token=26f8deeb-b9ed-4c4c-a51a-6a18da301e6b
-  - coveralls
+  - codecov
