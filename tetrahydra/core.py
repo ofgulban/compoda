@@ -159,7 +159,7 @@ def aitchison_norm(x):
     temp = np.zeros(dims[0])
     for i in range(dims[1]):
         for j in range(dims[1]):
-            temp += np.log(x[:, i] / x[:, j])**2
+            temp = np.add(temp, np.log(x[:, i] / x[:, j])**2.)
     x_a = np.sqrt(1.0/(2.0*dims[1])*temp)
     return x_a
 
