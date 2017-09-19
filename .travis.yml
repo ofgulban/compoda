@@ -10,4 +10,4 @@ install:
 script:
   - py.test --cov=./tetrahydra
 after_success:
-  - codecov
+  - bash <(curl -s https://codecov.io/bash)
