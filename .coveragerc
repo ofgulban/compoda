@@ -1,7 +1,7 @@
 [run]
-  source = tetrahydra
-  branch = True
-  omit =
-    *__init__*
-    *tests/*
-    tetrahydra/future/*
+    source = tetrahydra
+    branch = True
+    omit =
+        *__init__*
+        *tests/*
+        tetrahydra/future/*
