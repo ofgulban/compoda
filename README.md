@@ -1,11 +1,12 @@
 [![DOI](https://zenodo.org/badge/78312374.svg)](https://zenodo.org/badge/latestdoi/78312374)
 
+<img src="/misc/logo.png" width=300 align="right" />
+
 # Tetrahydra
-<img src="/misc/logo.png" width="450">
 
 Compositional data analysis tools for multi-modal images.
 
-Currently, this library is primarily being developed for (but not limited to) magnetic resonance images with multiple contrasts.
+Currently, this library is primarily being developed for (but not limited to) magnetic resonance images with multiple contrasts. For further details, check my [working short-paper](https://arxiv.org/abs/1705.03457) which is presented in [CoDaWork 2017](http://www.compositionaldata.com/codawork2017/).
 
 ## Dependencies
 
