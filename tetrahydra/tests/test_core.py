@@ -1,5 +1,6 @@
 """Test core functions."""
 
+import pytest
 import numpy as np
 from tetrahydra.core import closure, perturb, power
 
