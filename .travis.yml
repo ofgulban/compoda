@@ -8,6 +8,6 @@ install:
   - python setup.py develop
 # command to run tests
 script:
-  - py.test --cov=./
+  - py.test --cov=./tetrahydra
 after_success:
   - codecov
