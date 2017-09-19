@@ -9,5 +9,5 @@ install:
 script:
   - py.test
 after_success:
+  - codecov --token=26f8deeb-b9ed-4c4c-a51a-6a18da301e6b
   - coveralls
-  - codecov
