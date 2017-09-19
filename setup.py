@@ -12,7 +12,7 @@ except ImportError:
 
 setup(name='tetrahydra',
       version='0.1.0',
-      description='Compositional data methods for MRI data.',
+      description='Compositional data analysis methods.',
       url='https://github.com/ofgulban/tetrahydra',
       download_url='',
       author='Omer Faruk Gulban',
