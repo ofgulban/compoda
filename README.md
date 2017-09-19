@@ -14,8 +14,8 @@ Currently, this library is primarily being developed for (but not limited to) ma
 
 | Package                                                 | Tested version |
 |---------------------------------------------------------|----------------|
-| [NumPy](http://www.numpy.org/)                          | 1.11.1         |
-| [Scipy](https://www.scipy.org/)                         | 0.18.1         |
+| [NumPy](http://www.numpy.org/)                          | 1.13.1         |
+| [Scipy](https://www.scipy.org/)                         | 0.19.1         |
 
 #### Additionally required for example scripts:
 
