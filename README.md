@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/78312374.svg)](https://zenodo.org/badge/latestdoi/78312374)
+[![DOI](https://zenodo.org/badge/78312374.svg)](https://zenodo.org/badge/latestdoi/78312374) [![Build Status](https://travis-ci.org/ofgulban/tetrahydra.svg?branch=master)](https://travis-ci.org/ofgulban/tetrahydra) [![Coverage Status](https://coveralls.io/repos/github/ofgulban/tetrahydra/badge.svg)](https://coveralls.io/github/ofgulban/tetrahydra)
 
 <img src="/misc/logo.png" width=300 align="right" />
 
