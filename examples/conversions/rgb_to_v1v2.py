@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import os
 import numpy as np
 import tetrahydra.core as tet
-from tetrahydra.utils import truncate_and_scale
+from tetrahydra.utils import truncate_range, scale_range
 from nibabel import load, save, Nifti1Image
 
 """Load Data"""
@@ -95,7 +95,8 @@ ilr = ilr.reshape(dims[0], dims[1], dims[2], dims[3]-1)
 for i in range(ilr.shape[-1]):
     img = ilr[..., i]
     # scale is done for FSL-FAST otherwise it cannot find clusters
-    img = truncate_and_scale(img, percMin=0, percMax=100, zeroTo=2000)
+    img = truncate_range(img, percMin=0, percMax=100)
+    img = scale_range(img, scale_factor=2000)
     # img[mask == 0] = 0  # swap masked and imputed regions with zeros
     out = Nifti1Image(img, affine=nii1.affine)
     save(out, os.path.join(dirname, 'ilr_coord_'+str(i+1)+'.nii.gz'))
