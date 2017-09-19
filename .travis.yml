@@ -10,3 +10,4 @@ script:
   - py.test
 after_success:
   - coveralls
+  - codecov

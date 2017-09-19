@@ -1,4 +1,5 @@
 [run]
+  source = tetrahydra
   omit =
     *__init__*
     tetrahydra/future/*
