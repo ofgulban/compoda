@@ -147,3 +147,31 @@ def progress_output(input1, input2, text=''):
     """
     sys.stdout.write(("\r%i/%i " + text) % (input1, input2))
     sys.stdout.flush()
+
+
+def isometric_projection(data, alpha=45, beta=35.5):
+    """Do isometric projection.
+
+    Parameters
+    ----------
+    TODO
+    """
+    alpha, beta = np.deg2rad(alpha), np.deg2rad(beta)
+    # trans = (data.min() + data.max()) / 2.
+    # data = data - trans
+    r_1 = np.array([[1., 0., 0.],
+                    [0., np.cos(alpha), np.sin(alpha)],
+                    [0., -np.sin(alpha), np.cos(alpha)]])
+    r_2 = np.array([[np.cos(beta), 0., -np.sin(beta)],
+                    [0., 1., 0.],
+                    [np.sin(beta), 0., np.cos(beta)]])
+    rot = np.dot(r_1, r_2)
+    projection = np.array([[1., 0., 0.], [0., 1., 0.]]).T
+    dims = data.shape
+    out = np.zeros((dims[0], dims[1]-1))
+    temp = np.zeros(dims)
+    for i in range(data.shape[0]):
+        temp[i, :] = 1./np.sqrt(6) * np.dot(data[i, :], rot)
+    for i in range(data.shape[0]):
+        out[i, :] = np.dot(temp[i, :], projection)
+    return out
