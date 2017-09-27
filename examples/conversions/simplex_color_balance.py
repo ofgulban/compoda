@@ -1,11 +1,9 @@
-"""Create isometric logratio transformed coordinates for MRI data."""
+"""Color balance using compositional data methods."""
 
-from matplotlib.colors import LogNorm
-import matplotlib.pyplot as plt
 import os
 import numpy as np
 import tetrahydra.core as tet
-from tetrahydra.utils import truncate_range, scale_range
+from tetrahydra.utils import truncate_range
 from nibabel import load, save, Nifti1Image
 
 # Load data
@@ -34,31 +32,39 @@ orig = orig.reshape(dims[0]*dims[1]*dims[2], dims[3])
 orig[orig <= 0] = 1
 comp = np.copy(orig)
 
-# Luminance
-lumi = (np.max(comp, axis=1) + np.min(comp, axis=1)) / 2.
+# Lightness
+light = (np.max(comp, axis=1) + np.min(comp, axis=1)) / 2.
 
 # Closure
 comp = tet.closure(comp)
 
+# Do not consider masked values
+p_mask = mask.reshape(dims[0]*dims[1]*dims[2])
+p_comp = comp[p_mask > 0]
+
 # Centering
-center = tet.sample_center(comp)
-temp = np.ones(comp.shape) * center
-comp = tet.perturb(comp, temp**-1.)
+center = tet.sample_center(p_comp)
+temp = np.ones(p_comp.shape) * center
+p_comp = tet.perturb(p_comp, temp**-1.)
 # Standardize
-totvar = tet.sample_total_variance(comp, center)
-comp = tet.power(comp, np.power(totvar, -1./2.))
+totvar = tet.sample_total_variance(p_comp, center)
+p_comp = tet.power(p_comp, np.power(totvar, -1./2.))
 
 # Use Aitchison norm and powerinf for truncation of extreme compositions
 anorm_thr = 3
-anorm = tet.aitchison_norm(comp)
+anorm = tet.aitchison_norm(p_comp)
 idx_trunc = anorm > anorm_thr
 truncation_power = anorm[idx_trunc] / anorm_thr
 correction = np.ones(anorm.shape)
 correction[idx_trunc] = truncation_power
-comp_bal = tet.power(comp, correction[:, None])
+comp_bal = tet.power(p_comp, correction[:, None])
 
 # go to hexcone lattice for exports
-hexc = comp_bal * lumi[:, None]
+comp[p_mask > 0] = comp_bal
+
+# lightness balance
+light = truncate_range(light, percMin=1, percMax=99)
+hexc = comp * light[:, None]
 
 hexc = hexc.reshape(dims[0], dims[1], dims[2], dims[3])
 for i in range(hexc.shape[3]):
