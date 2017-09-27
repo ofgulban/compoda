@@ -1,4 +1,4 @@
-"""Create isometric logratio transformed coordinates for MRI data."""
+"""Color balance using simplest color balance method."""
 
 import os
 import numpy as np
