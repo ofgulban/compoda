@@ -66,8 +66,9 @@ def hagberg2014_eq5(M_0, TE_n, T_2s, phi):
     return signal
 
 
-def shan2014_eq6(A=[-0.2, 1.8, -1.8, 0.2], T=[0.1, 4, 10, 20],
-                 D=[8, 1, 1, 1.2], t=range(4)):
+def shan2014_eq6(A=np.array([-0.2, 1.8, -1.8, 0.2]),
+                 T=np.array([0.1, 4, 10, 20]), D=np.array([8, 1, 1, 1.2]),
+                 t=range(4)):
     """Shan et al. 2014, equation 6.
 
     Parameters

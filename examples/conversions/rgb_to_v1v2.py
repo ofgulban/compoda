@@ -8,8 +8,7 @@ import tetrahydra.core as tet
 from tetrahydra.utils import truncate_range, scale_range
 from nibabel import load, save, Nifti1Image
 
-"""Load Data"""
-#
+# Load data
 nii1 = load('/home/faruk/Data/Faruk/M01/source/M01_T1w_aniso_msr.nii.gz')
 nii2 = load('/home/faruk/Data/Faruk/M01/source/M01_PD_aniso_msr.nii.gz')
 nii3 = load('/home/faruk/Data/Faruk/M01/source/M01_T2s_aniso_msr.nii.gz')
