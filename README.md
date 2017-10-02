@@ -29,6 +29,8 @@ Currently, this library is primarily being developed for (but not limited to) ma
 
 ## Installation & Quick Start
 
+Make sure you have [**Python 2.7**](https://www.python.org/download/releases/2.7/) and [**pip**](https://en.wikipedia.org/wiki/Pip_(package_manager)) installed. Then run these commands in your command line:
+
 ```bash
 cd /path/to/tetrahydra/
 pip install -r requirements.txt
