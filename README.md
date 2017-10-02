@@ -31,7 +31,8 @@ Currently, this library is primarily being developed for (but not limited to) ma
 
 ```bash
 cd /path/to/tetrahydra/
-pip install -e .
+pip install -r requirements.txt
+python setup.py install
 ```
 
 ## Support
