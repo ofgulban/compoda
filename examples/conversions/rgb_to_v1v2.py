@@ -10,11 +10,11 @@ from tetrahydra.utils import truncate_range, scale_range
 from nibabel import load, save, Nifti1Image
 
 # Load data
-nii1 = load('/home/faruk/gdrive/Segmentator/data/faruk/pt7/T1.nii.gz')
-nii2 = load('/home/faruk/gdrive/Segmentator/data/faruk/pt7/PD.nii.gz')
-nii3 = load('/home/faruk/gdrive/Segmentator/data/faruk/pt7/T2s.nii.gz')
+nii1 = load('/home/faruk/gdrive/temp_segmentator_paper_data/figures/figure_source/mprage/CoDa_theory/mS02_T1w_eq_bet.nii.gz')
+nii2 = load('/home/faruk/gdrive/temp_segmentator_paper_data/figures/figure_source/mprage/CoDa_theory/mS02_PD_eq_bet.nii.gz')
+nii3 = load('/home/faruk/gdrive/temp_segmentator_paper_data/figures/figure_source/mprage/CoDa_theory/mS02_T2s_eq_bet.nii.gz')
 
-mask = load("//home/faruk/gdrive/Segmentator/data/faruk/pt7/brain_mask.nii.gz").get_data()
+mask = load("/home/faruk/gdrive/temp_segmentator_paper_data/figures/figure_source/mprage/CoDa_theory/spm_brain_mask.nii.gz").get_data()
 mask[mask > 0] = 1.  # binarize
 
 basename = nii1.get_filename().split(os.extsep, 1)[0]
@@ -42,7 +42,7 @@ comp = tet.closure(comp)
 p_mask = mask.reshape(dims[0]*dims[1]*dims[2])
 p_comp = comp[p_mask > 0]
 
-# Isometric logratio transformation before nay centering
+# Isometric logratio transformation before any centering
 ilr_orig = tet.ilr_transformation(np.copy(p_comp))
 
 # Centering
@@ -65,7 +65,7 @@ ax_1 = plt.subplot(121)
 _, _, _, h_1 = ax_1.hist2d(ilr_orig[:, 0], ilr_orig[:, 1], bins=2000,
                            cmap='gray_r')
 h_1.set_norm(LogNorm(vmax=np.power(10, 3)))
-plt.colorbar(h_1)
+plt.colorbar(h_1, fraction=0.046, pad=0.04)
 ax_1.set_title('Before Centering')
 ax_1.set_xlabel('$v_1$')
 ax_1.set_ylabel('$v_2$')
@@ -77,7 +77,7 @@ ax_2 = plt.subplot(122)
 # Plot 2D histogram of ilr transformed data
 _, _, _, h_2 = ax_2.hist2d(ilr[:, 0], ilr[:, 1], bins=2000, cmap='gray_r')
 h_2.set_norm(LogNorm(vmax=np.power(10, 3)))
-plt.colorbar(h_2)
+plt.colorbar(h_2, fraction=0.046, pad=0.04)
 ax_2.set_title('After Centering')
 ax_2.set_xlabel('$v_1$')
 ax_2.set_ylabel('$v_2$')
@@ -86,25 +86,32 @@ ax_2.set_xlim(limits)
 ax_2.set_ylim(limits)
 
 # plot axes of primary colors on top
-c_axes = np.array([[15., 1., 1.], [1., 15., 1.], [1., 1., 15.]])
-c_axes = tet.closure(c_axes)
+nr_nodes = 10
+caxw = 1  # width
+for a in range(3):  # loop through the primary axes
+    # create a set of compositions along a primary axis
+    nodes = np.linspace(1, 15, nr_nodes)
+    c_axis = np.ones([nr_nodes, 3])
+    c_axis[:, a] = nodes
+    c_axis = tet.closure(c_axis)
+    c_axis = tet.ilr_transformation(c_axis)
+    ax_1.add_patch(patches.Polygon(c_axis, closed=False, linewidth=caxw,
+                                   facecolor='k', edgecolor='k'))
+
+
 # (optional) center the primary guides the same way
-# c_temp = np.ones(pri.shape) * center
-# pri = tet.perturb(pri, c_temp**-1)
-c_axes = tet.ilr_transformation(c_axes)
-caxw = 0.025  # width
-ax_1.add_patch(patches.FancyArrow(0, 0, c_axes[0, 0], c_axes[0, 1], width=caxw,
-                                  facecolor='r', edgecolor='none'))
-ax_1.add_patch(patches.FancyArrow(0, 0, c_axes[1, 0], c_axes[1, 1], width=caxw,
-                                  facecolor='g', edgecolor='none'))
-ax_1.add_patch(patches.FancyArrow(0, 0, c_axes[2, 0], c_axes[2, 1], width=caxw,
-                                  facecolor='b', edgecolor='none'))
-ax_2.add_patch(patches.FancyArrow(0, 0, c_axes[0, 0], c_axes[0, 1], width=caxw,
-                                  facecolor='r', edgecolor='none'))
-ax_2.add_patch(patches.FancyArrow(0, 0, c_axes[1, 0], c_axes[1, 1], width=caxw,
-                                  facecolor='g', edgecolor='none'))
-ax_2.add_patch(patches.FancyArrow(0, 0, c_axes[2, 0], c_axes[2, 1], width=caxw,
-                                  facecolor='b', edgecolor='none'))
+for a in range(3):  # loop through the primary axes
+    # create a set of compositions along a primary axis
+    nodes = np.arange(1, nr_nodes+1)
+    c_axis = np.ones([nr_nodes, 3])
+    c_axis[:, a] = nodes
+    c_axis = tet.closure(c_axis)
+    c_temp = np.ones(c_axis.shape) * center
+    c_axis = tet.perturb(c_axis, c_temp**-1.)
+    c_axis = tet.power(c_axis, np.power(totvar, -1./2.))
+    c_axis = tet.ilr_transformation(c_axis)
+    ax_2.add_patch(patches.Polygon(c_axis, closed=False, linewidth=caxw,
+                                   facecolor='k', edgecolor='k'))
 
 plt.show()
 
@@ -112,7 +119,7 @@ print('Exporting ilr coordinates...')
 # ilr transformation for nifti output (also considering unplotted data)
 # Centering
 c_temp = np.ones(comp.shape) * center
-comp = tet.perturb(comp, c_temp**-1)
+comp = tet.perturb(comp, c_temp**-1.)
 # Standardize
 comp = tet.power(comp, np.power(totvar, -1./2.))
 ilr = tet.ilr_transformation(comp)
