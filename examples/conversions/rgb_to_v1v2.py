@@ -10,11 +10,11 @@ from tetrahydra.utils import truncate_range, scale_range
 from nibabel import load, save, Nifti1Image
 
 # Load data
-nii1 = load('/home/faruk/gdrive/temp_segmentator_paper_data/figures/figure_source/mprage/CoDa_theory/mS02_T1w_eq_bet.nii.gz')
-nii2 = load('/home/faruk/gdrive/temp_segmentator_paper_data/figures/figure_source/mprage/CoDa_theory/mS02_PD_eq_bet.nii.gz')
-nii3 = load('/home/faruk/gdrive/temp_segmentator_paper_data/figures/figure_source/mprage/CoDa_theory/mS02_T2s_eq_bet.nii.gz')
+nii1 = load('/path/to/mS02_T1w_eq_bet.nii.gz')
+nii2 = load('/path/to/mS02_PD_eq_bet.nii.gz')
+nii3 = load('/path/to/mS02_T2s_eq_bet.nii.gz')
 
-mask = load("/home/faruk/gdrive/temp_segmentator_paper_data/figures/figure_source/mprage/CoDa_theory/spm_brain_mask.nii.gz").get_data()
+mask = load('/path/to/brain_mask.nii.gz').get_data()
 mask[mask > 0] = 1.  # binarize
 
 basename = nii1.get_filename().split(os.extsep, 1)[0]
