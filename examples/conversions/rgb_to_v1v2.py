@@ -86,11 +86,11 @@ ax_2.set_xlim(limits)
 ax_2.set_ylim(limits)
 
 # plot axes of primary colors on top
-nr_nodes = 10
+nr_nodes, max_node = 2, 15
 caxw = 1  # width
 for a in range(3):  # loop through the primary axes
     # create a set of compositions along a primary axis
-    nodes = np.linspace(1, 15, nr_nodes)
+    nodes = np.linspace(1, max_node, nr_nodes)
     c_axis = np.ones([nr_nodes, 3])
     c_axis[:, a] = nodes
     c_axis = tet.closure(c_axis)
@@ -98,17 +98,18 @@ for a in range(3):  # loop through the primary axes
     ax_1.add_patch(patches.Polygon(c_axis, closed=False, linewidth=caxw,
                                    facecolor='k', edgecolor='k'))
 
-
-# (optional) center the primary guides the same way
-for a in range(3):  # loop through the primary axes
+for a in range(3):
     # create a set of compositions along a primary axis
-    nodes = np.arange(1, nr_nodes+1)
+    nodes = np.linspace(1, max_node, nr_nodes)
     c_axis = np.ones([nr_nodes, 3])
     c_axis[:, a] = nodes
     c_axis = tet.closure(c_axis)
+
+    # (optional) center the primary guides the same way
     c_temp = np.ones(c_axis.shape) * center
     c_axis = tet.perturb(c_axis, c_temp**-1.)
     c_axis = tet.power(c_axis, np.power(totvar, -1./2.))
+
     c_axis = tet.ilr_transformation(c_axis)
     ax_2.add_patch(patches.Polygon(c_axis, closed=False, linewidth=caxw,
                                    facecolor='k', edgecolor='k'))
