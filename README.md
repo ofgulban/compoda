@@ -47,10 +47,10 @@ The project is licensed under [GNU General Public License Version 3](http://www.
 
 ## References
 
+* [Compositional data analysis in a nutshell.](http://www.sediment.uni-goettingen.de/staff/tolosana/extra/CoDaNutshell.pdf)
+
 * Aitchison, J. (1982). The Statistical Analysis of Compositional Data. Journal of the Royal Statistical Society, 44(2), 139–177.
 
 * Aitchison, J. (2002). A Concise Guide to Compositional Data Analysis. CDA Workshop Girona, 24, 73–81.
 
 * Pawlowsky-Glahn, V., Egozcue, J. J., & Tolosana-Delgado, R. (2015). Modelling and Analysis of Compositional Data. Chichester, UK: John Wiley & Sons, Ltd. http://doi.org/10.1002/9781119003144
-
-* [Compositional data analysis in a nutshell.](http://www.sediment.uni-goettingen.de/staff/tolosana/extra/CoDaNutshell.pdf)
