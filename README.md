@@ -8,7 +8,7 @@
 
 Compositional data analysis tools for multi-modal images.
 
-Currently, this library is primarily being developed for (but not limited to) magnetic resonance images with multiple contrasts. For further details, check my [working short-paper](https://arxiv.org/abs/1705.03457) which is presented in [CoDaWork 2017](http://www.compositionaldata.com/codawork2017/).
+Currently, this library is primarily being developed for (but not limited to) magnetic resonance images with multiple contrasts. For further details, check my [preprint on arXiv](https://arxiv.org/abs/1705.03457) which is presented in [CoDaWork 2017](http://www.compositionaldata.com/codawork2017/).
 
 ## Dependencies
 
