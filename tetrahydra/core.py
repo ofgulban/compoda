@@ -134,7 +134,7 @@ def aitchison_inner_product(x, y):
     for i in range(dims[1]):
         for j in range(dims[1]):
             temp += np.log(x[:, i]/x[:, j]) * np.log(y[:, i]/y[:, j])
-    ip_xy = 1.0/(2.0*dims[1])*temp
+    ip_xy = (1.0 / (2.0 * dims[1])) * temp
     return ip_xy
 
 
