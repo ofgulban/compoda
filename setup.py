@@ -1,17 +1,20 @@
 """Compoda setup.
 
-To install, using the commandline do:
+To install, using the command line do:
     pip install -e /path/to/compoda
 
 """
 
 from setuptools import setup
 
+VERSION = '0.3.0'
+
 setup(name='compoda',
-      version='0.3.0',
+      version=VERSION,
       description='Compositional data analysis tools implemented in Python.',
       url='https://github.com/ofgulban/compoda',
-      download_url='',
+      download_url=('https://github.com/ofgulban/compoda/archive/release/'
+                    + VERSION + 'tar.gz'),
       author='Omer Faruk Gulban',
       author_email='faruk.gulban@maastrichtuniversity.nl',
       license='GNU Geneal Public License Version 3',
