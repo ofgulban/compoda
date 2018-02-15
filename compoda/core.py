@@ -1,7 +1,7 @@
 """Core functions used in compositional data analysis."""
 
-# Part of Tetrahydra library
-# Copyright (C) 2016-2017  Omer Faruk Gulban
+# Part of Compoda library
+# Copyright (C) 2016-2018  Omer Faruk Gulban
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -134,7 +134,7 @@ def aitchison_inner_product(x, y):
     for i in range(dims[1]):
         for j in range(dims[1]):
             temp += np.log(x[:, i]/x[:, j]) * np.log(y[:, i]/y[:, j])
-    ip_xy = 1.0/(2.0*dims[1])*temp
+    ip_xy = (1.0 / (2.0 * dims[1])) * temp
     return ip_xy
 
 

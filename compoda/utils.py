@@ -1,7 +1,7 @@
 """Utility functions."""
 
-# Part of Tetrahydra library
-# Copyright (C) 2016-2017  Omer Faruk Gulban
+# Part of Compoda library
+# Copyright (C) 2016-2018  Omer Faruk Gulban
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

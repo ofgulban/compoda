@@ -2,8 +2,8 @@
 
 import os
 import numpy as np
-import tetrahydra.core as tet
-from tetrahydra.utils import truncate_range
+import compoda.core as coda
+from compoda.utils import truncate_range
 from nibabel import load, save, Nifti1Image
 
 # Load data
@@ -36,28 +36,28 @@ comp = np.copy(orig)
 light = (np.max(comp, axis=1) + np.min(comp, axis=1)) / 2.
 
 # Closure
-comp = tet.closure(comp)
+comp = coda.closure(comp)
 
 # Do not consider masked values
 p_mask = mask.reshape(dims[0]*dims[1]*dims[2])
 p_comp = comp[p_mask > 0]
 
 # Centering
-center = tet.sample_center(p_comp)
+center = coda.sample_center(p_comp)
 temp = np.ones(p_comp.shape) * center
-p_comp = tet.perturb(p_comp, temp**-1.)
+p_comp = coda.perturb(p_comp, temp**-1.)
 # Standardize
-totvar = tet.sample_total_variance(p_comp, center)
-p_comp = tet.power(p_comp, np.power(totvar, -1./2.))
+totvar = coda.sample_total_variance(p_comp, center)
+p_comp = coda.power(p_comp, np.power(totvar, -1./2.))
 
 # Use Aitchison norm and powerinf for truncation of extreme compositions
 anorm_thr = 3
-anorm = tet.aitchison_norm(p_comp)
+anorm = coda.aitchison_norm(p_comp)
 idx_trunc = anorm > anorm_thr
 truncation_power = anorm[idx_trunc] / anorm_thr
 correction = np.ones(anorm.shape)
 correction[idx_trunc] = truncation_power
-comp_bal = tet.power(p_comp, correction[:, None])
+comp_bal = coda.power(p_comp, correction[:, None])
 
 # go to hexcone lattice for exports
 comp[p_mask > 0] = comp_bal

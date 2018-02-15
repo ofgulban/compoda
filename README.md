@@ -1,12 +1,12 @@
-[![DOI](https://zenodo.org/badge/78312374.svg)](https://zenodo.org/badge/latestdoi/78312374) [![Build Status](https://travis-ci.org/ofgulban/tetrahydra.svg?branch=master)](https://travis-ci.org/ofgulban/tetrahydra)  [![codecov](https://codecov.io/gh/ofgulban/tetrahydra/branch/master/graph/badge.svg)](https://codecov.io/gh/ofgulban/tetrahydra) [![Code Health](https://landscape.io/github/ofgulban/tetrahydra/master/landscape.svg?style=flat)](https://landscape.io/github/ofgulban/tetrahydra/master)
+[![DOI](https://zenodo.org/badge/78312374.svg)](https://zenodo.org/badge/latestdoi/78312374) [![Build Status](https://travis-ci.org/ofgulban/compoda.svg?branch=master)](https://travis-ci.org/ofgulban/compoda)  [![codecov](https://codecov.io/gh/ofgulban/compoda/branch/master/graph/badge.svg)](https://codecov.io/gh/ofgulban/compoda) [![Code Health](https://landscape.io/github/ofgulban/compoda/master/landscape.svg?style=flat)](https://landscape.io/github/ofgulban/compoda/master)
 
 
 
-<img src="/misc/logo.png" width=300 align="right" />
+<img src="/visuals/logo.png" width=200 align="right" />
 
-# Tetrahydra
+# Compoda
 
-Compositional data analysis tools for multi-modal images.
+Compositional data analysis tools implemented in python.
 
 Currently, this library is primarily being developed for (but not limited to) magnetic resonance images with multiple contrasts. For further details, check my [preprint on arXiv](https://arxiv.org/abs/1705.03457) which is presented in [CoDaWork 2017](http://www.compositionaldata.com/codawork2017/).
 
@@ -29,17 +29,15 @@ Currently, this library is primarily being developed for (but not limited to) ma
 
 ## Installation & Quick Start
 
-Make sure you have [**Python 2.7**](https://www.python.org/download/releases/2.7/) and [**pip**](https://en.wikipedia.org/wiki/Pip_(package_manager)) installed. Then run these commands in your command line:
+Make sure you have [**Python 2.7**](https://www.python.org/download/releases/2.7/) and [**pip**](https://en.wikipedia.org/wiki/Pip_(package_manager)) installed. Then run this commands in your command line:
 
 ```bash
-cd /path/to/tetrahydra/
-pip install -r requirements.txt
-python setup.py install
+pip install pycoda
 ```
 
 ## Support
 
-Please use [GitHub issues](https://github.com/ofgulban/tetrahydra/issues) for questions, bug reports or feature requests.
+Please use [GitHub issues](https://github.com/ofgulban/compoda/issues) for questions, bug reports or feature requests.
 
 ## License
 

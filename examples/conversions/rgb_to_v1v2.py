@@ -5,16 +5,16 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import os
 import numpy as np
-import tetrahydra.core as tet
-from tetrahydra.utils import truncate_range, scale_range
+import compoda.core as tet
+from compoda.utils import truncate_range, scale_range
 from nibabel import load, save, Nifti1Image
 
 # Load data
-nii1 = load('/path/to/mS02_T1w_eq_bet.nii.gz')
-nii2 = load('/path/to/mS02_PD_eq_bet.nii.gz')
-nii3 = load('/path/to/mS02_T2s_eq_bet.nii.gz')
+nii1 = load('/path/to/file1.nii.gz')
+nii2 = load('/path/to/file2.nii.gz')
+nii3 = load('/path/to/file3.nii.gz')
 
-mask = load('/path/to/brain_mask.nii.gz').get_data()
+mask = load('/path/to/mask.nii.gz').get_data()
 mask[mask > 0] = 1.  # binarize
 
 basename = nii1.get_filename().split(os.extsep, 1)[0]
@@ -31,6 +31,13 @@ comp[..., 1] = vol2 * mask
 comp[..., 2] = vol3 * mask
 
 comp = comp.reshape(dims[0]*dims[1]*dims[2], dims[3])
+
+# (optional) truncate and rescale
+for i in range(comp.shape[1]):
+    temp = comp[:, i]
+    temp = truncate_range(temp)
+    temp = scale_range(temp, scale_factor=1000)
+    comp[:, i] = temp
 
 # Impute
 comp[comp == 0] = 1.

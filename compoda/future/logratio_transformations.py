@@ -7,7 +7,7 @@ TODO: Turn this script into trasnformation tests.
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
-import tetrahydra.core as tet
+import compoda.core as tet
 
 temp = np.arange(1, 101)
 
