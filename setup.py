@@ -3,6 +3,10 @@
 To install, using the command line do:
     pip install -e /path/to/compoda
 
+Notes for PyPI:
+python setup.py sdist upload -r pypitest
+python setup.py sdist upload -r pypi
+
 """
 
 from setuptools import setup
