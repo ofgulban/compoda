@@ -2,7 +2,7 @@
 
 import pytest
 import numpy as np
-from tetrahydra.core import closure, perturb, power
+from compoda.core import closure, perturb, power
 
 
 def test_closure():

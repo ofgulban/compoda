@@ -2,7 +2,7 @@
 
 import os
 import numpy as np
-from tetrahydra.utils import truncate_range
+from compoda.utils import truncate_range
 from nibabel import load, save, Nifti1Image
 
 # Load data

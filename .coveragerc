@@ -4,4 +4,4 @@ source = tetrahydra
 omit =
     *__init__*
     *tests/*
-    tetrahydra/future/*
+    compoda/future/*

@@ -8,7 +8,7 @@ import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import seaborn
-from tetrahydra.core import closure, ilr_transformation
+from compoda.core import closure, ilr_transformation
 
 # create euclidean 3D lattice
 parcels = 10

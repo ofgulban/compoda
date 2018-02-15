@@ -2,8 +2,8 @@
 
 import os
 import numpy as np
-import tetrahydra.core as tet
-from tetrahydra.utils import truncate_range, scale_range
+import compoda.core as coda
+from compoda.utils import truncate_range, scale_range
 from nibabel import load, save, Nifti1Image
 
 # Load data
@@ -40,15 +40,15 @@ comp[..., 2] = vol3[idx_mask]
 comp[comp == 0] = 1.
 
 # Closure
-comp = tet.closure(comp)
+comp = coda.closure(comp)
 
 # Aitchison inner product
 ref = np.ones(comp.shape)
 ref[:, 1] = ref[:, 1] * 10
-ref = tet.closure(ref)
-ip = tet.aitchison_inner_product(comp, ref)
+ref = coda.closure(ref)
+ip = coda.aitchison_inner_product(comp, ref)
 
-cos_theta = ip / (tet.aitchison_norm(comp) * tet.aitchison_norm(ref))
+cos_theta = ip / (coda.aitchison_norm(comp) * coda.aitchison_norm(ref))
 rad = np.arccos(cos_theta)
 deg = rad * (360 / (2*np.pi))
 

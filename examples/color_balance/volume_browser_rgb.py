@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider, Button
 from nibabel import load
-from tetrahydra.utils import scale_range
+from compoda.utils import scale_range
 np.seterr(divide='ignore', invalid='ignore')
 
 """Load Data"""

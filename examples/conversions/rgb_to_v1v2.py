@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import os
 import numpy as np
-import tetrahydra.core as tet
-from tetrahydra.utils import truncate_range, scale_range
+import compoda.core as tet
+from compoda.utils import truncate_range, scale_range
 from nibabel import load, save, Nifti1Image
 
 # Load data

@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import os
 import numpy as np
-import tetrahydra.core as tet
-from tetrahydra.utils import truncate_range, scale_range
+import compoda.core as coda
+from compoda.utils import truncate_range, scale_range
 from nibabel import load, save, Nifti1Image
 
 # Load data
@@ -43,22 +43,22 @@ comp[..., 2] = vol3[idx_mask]
 comp[comp == 0] = 1.
 
 # Closure
-comp = tet.closure(comp)
+comp = coda.closure(comp)
 
 # Isometric logratio transformation before any centering
-ilr_orig = tet.ilr_transformation(np.copy(comp))
+ilr_orig = coda.ilr_transformation(np.copy(comp))
 
 # Centering
-center = tet.sample_center(comp)
+center = coda.sample_center(comp)
 print "Sample center: " + str(center)
 c_temp = np.ones(comp.shape) * center
-p_comp = tet.perturb(comp, c_temp**-1)
+p_comp = coda.perturb(comp, c_temp**-1)
 # Standardize
-totvar = tet.sample_total_variance(comp, center)
-comp = tet.power(comp, np.power(totvar, -1./2.))
+totvar = coda.sample_total_variance(comp, center)
+comp = coda.power(comp, np.power(totvar, -1./2.))
 
 # Isometric logratio transformation for plotting
-ilr = tet.ilr_transformation(comp)
+ilr = coda.ilr_transformation(comp)
 
 # Plots
 fig = plt.figure()
@@ -96,8 +96,8 @@ for a in range(3):  # loop through the primary axes
     nodes = np.linspace(1, max_node, nr_nodes)
     c_axis = np.ones([nr_nodes, 3])
     c_axis[:, a] = nodes
-    c_axis = tet.closure(c_axis)
-    c_axis = tet.ilr_transformation(c_axis)
+    c_axis = coda.closure(c_axis)
+    c_axis = coda.ilr_transformation(c_axis)
     ax_1.add_patch(patches.Polygon(c_axis, closed=False, linewidth=caxw,
                                    facecolor='k', edgecolor='k'))
 
@@ -106,14 +106,14 @@ for a in range(3):
     nodes = np.linspace(1, max_node, nr_nodes)
     c_axis = np.ones([nr_nodes, 3])
     c_axis[:, a] = nodes
-    c_axis = tet.closure(c_axis)
+    c_axis = coda.closure(c_axis)
 
     # (optional) center the primary guides the same way
     c_temp = np.ones(c_axis.shape) * center
-    c_axis = tet.perturb(c_axis, c_temp**-1.)
-    c_axis = tet.power(c_axis, np.power(totvar, -1./2.))
+    c_axis = coda.perturb(c_axis, c_temp**-1.)
+    c_axis = coda.power(c_axis, np.power(totvar, -1./2.))
 
-    c_axis = tet.ilr_transformation(c_axis)
+    c_axis = coda.ilr_transformation(c_axis)
     ax_2.add_patch(patches.Polygon(c_axis, closed=False, linewidth=caxw,
                                    facecolor='k', edgecolor='k'))
 
