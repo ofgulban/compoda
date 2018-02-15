@@ -54,7 +54,7 @@ ilr_orig = tet.ilr_transformation(np.copy(p_comp))
 
 # Centering
 center = tet.sample_center(p_comp)
-print "Sample center: " + str(center)
+print("Sample center: " + str(center))
 c_temp = np.ones(p_comp.shape) * center
 p_comp = tet.perturb(p_comp, c_temp**-1)
 # Standardize

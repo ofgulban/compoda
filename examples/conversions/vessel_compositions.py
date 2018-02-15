@@ -50,7 +50,7 @@ ilr_orig = coda.ilr_transformation(np.copy(comp))
 
 # Centering
 center = coda.sample_center(comp)
-print "Sample center: " + str(center)
+print("Sample center: " + str(center))
 c_temp = np.ones(comp.shape) * center
 p_comp = coda.perturb(comp, c_temp**-1)
 # Standardize
