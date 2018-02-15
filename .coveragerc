@@ -1,5 +1,5 @@
 [run]
-source = tetrahydra
+source = compoda
 
 omit =
     *__init__*
