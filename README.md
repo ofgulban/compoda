@@ -1,4 +1,5 @@
-[![DOI](https://zenodo.org/badge/78312374.svg)](https://zenodo.org/badge/latestdoi/78312374) [![Build Status](https://travis-ci.org/ofgulban/compoda.svg?branch=master)](https://travis-ci.org/ofgulban/compoda)  [![codecov](https://codecov.io/gh/ofgulban/compoda/branch/master/graph/badge.svg)](https://codecov.io/gh/ofgulban/compoda) [![Code Health](https://landscape.io/github/ofgulban/compoda/master/landscape.svg?style=flat)](https://landscape.io/github/ofgulban/compoda/master)
+[![DOI](https://zenodo.org/badge/78312374.svg)](https://zenodo.org/badge/latestdoi/78312374) [![Build Status](https://travis-ci.org/ofgulban/compoda.svg?branch=master)](https://travis-ci.org/ofgulban/compoda) [![Build status](https://ci.appveyor.com/api/projects/status/plrtbnjvf09h38xn?svg=true)](https://ci.appveyor.com/project/ofgulban/compoda)
+ [![codecov](https://codecov.io/gh/ofgulban/compoda/branch/master/graph/badge.svg)](https://codecov.io/gh/ofgulban/compoda) [![Code Health](https://landscape.io/github/ofgulban/compoda/master/landscape.svg?style=flat)](https://landscape.io/github/ofgulban/compoda/master)
 
 
 
@@ -12,7 +13,7 @@ Currently, this library is primarily being developed for (but not limited to) ma
 
 ## Dependencies
 
-[**Python 2.7**](https://www.python.org/download/releases/2.7/)
+**[Python 2.7](https://www.python.org/download/releases/2.7/)** or **[Python 3.6](https://www.python.org/downloads/release/python-363/)** (compatible with both).
 
 | Package                                                 | Tested version |
 |---------------------------------------------------------|----------------|
