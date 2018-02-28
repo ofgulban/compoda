@@ -46,9 +46,11 @@ def closure(data, k=1.0):
 
     """
     data_sum = np.sum(data, axis=1)
+    out = np.copy(data)
     for i in range(data.shape[1]):
-        np.divide(data[:, i], data_sum, out=data[:, i])
-    return data * k
+        out[:, i] = np.divide(out[:, i], data_sum)
+    out = data * k
+    return out
 
 
 def perturb(x, y, reclose=True):
