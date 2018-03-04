@@ -10,11 +10,11 @@ from compoda.utils import truncate_range, scale_range
 from nibabel import load, save, Nifti1Image
 
 # Load data
-nii1 = load('/media/Data_Drive/ISILON/006_SEGMENTATION/VESSELS/S01/coda/S01_SES1_T1.nii.gz')
-nii2 = load('/media/Data_Drive/ISILON/006_SEGMENTATION/VESSELS/S01/coda/S01_SES1_PD.nii.gz')
-nii3 = load('/media/Data_Drive/ISILON/006_SEGMENTATION/VESSELS/S01/coda/S01_T2s.nii.gz')
+nii1 = load('/path/to/file1.nii.gz')
+nii2 = load('/path/to/file2.nii.gz')
+nii3 = load('/path/to/file3.nii.gz')
 
-mask = load('/media/Data_Drive/ISILON/006_SEGMENTATION/VESSELS/S01/coda/S01_vessels_suptemp_NAT_v04_veins.nii.gz').get_data()
+mask = load("/path/to/mask.nii.gz").get_data()
 mask[mask > 0] = 1.  # binarize
 idx_mask = mask > 0
 

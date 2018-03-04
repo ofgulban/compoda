@@ -11,9 +11,9 @@ np.seterr(divide='ignore', invalid='ignore')
 
 """Load Data"""
 #
-vol1 = load('/home/faruk/gdrive/Segmentator/data/faruk/pt7/input1_simplex_cbal.nii.gz')
-vol2 = load('/home/faruk/gdrive/Segmentator/data/faruk/pt7/input2_simplex_cbal.nii.gz')
-vol3 = load('/home/faruk/gdrive/Segmentator/data/faruk/pt7/input3_simplex_cbal.nii.gz')
+vol1 = load('/path/to/file1.nii.gz')
+vol2 = load('/path/to/file2.nii.gz')
+vol3 = load('/path/to/file3.nii.gz')
 
 basename = vol1.get_filename().split(os.extsep, 1)[0]
 
