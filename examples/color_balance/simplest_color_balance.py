@@ -6,11 +6,11 @@ from compoda.utils import truncate_range
 from nibabel import load, save, Nifti1Image
 
 # Load data
-nii1 = load('/home/faruk/gdrive/Segmentator/data/faruk/pt7/T1.nii.gz')
-nii2 = load('/home/faruk/gdrive/Segmentator/data/faruk/pt7/PD.nii.gz')
-nii3 = load('/home/faruk/gdrive/Segmentator/data/faruk/pt7/T2s.nii.gz')
+nii1 = load('/path/to/file1.nii.gz')
+nii2 = load('/path/to/file2.nii.gz')
+nii3 = load('/path/to/file3.nii.gz')
 
-mask = load("//home/faruk/gdrive/Segmentator/data/faruk/pt7/brain_mask.nii.gz").get_data()
+mask = load("/path/to/mask.nii.gz").get_data()
 mask[mask > 0] = 1.  # binarize
 
 basename = nii1.get_filename().split(os.extsep, 1)[0]
