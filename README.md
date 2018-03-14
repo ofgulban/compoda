@@ -27,9 +27,9 @@ Currently, this library is primarily being developed for (but not limited to) ma
 | [NiBabel](http://nipy.org/nibabel/)                     | 2.1.0          |
 
 
-## Installation & Quick Start
+## Installation
 
-Make sure you have [**Python 2.7**](https://www.python.org/download/releases/2.7/) and [**pip**](https://en.wikipedia.org/wiki/Pip_(package_manager)) installed. Then run this commands in your command line:
+Make sure you have [**Python 2.7**](https://www.python.org/download/releases/2.7/) and [**pip**](https://en.wikipedia.org/wiki/Pip_(package_manager)) installed. Then run this command in your command line:
 
 ```bash
 pip install compoda
@@ -37,15 +37,15 @@ pip install compoda
 
 or as an alternative
 - clone this repository and change directory to:
-```
+```bash
 cd /path/to/compoda
 ```
 - Install the requirements by running the following command:
-```
+```bash
 pip install -r requirements.txt
 ```
 - Install compoda:
-```
+```bash
 python setup.py install
 ```
 
