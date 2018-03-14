@@ -32,7 +32,7 @@ Currently, this library is primarily being developed for (but not limited to) ma
 Make sure you have [**Python 2.7**](https://www.python.org/download/releases/2.7/) and [**pip**](https://en.wikipedia.org/wiki/Pip_(package_manager)) installed. Then run this commands in your command line:
 
 ```bash
-pip install pycoda
+pip install compoda
 ```
 
 ## Support
