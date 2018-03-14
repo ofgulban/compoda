@@ -35,6 +35,20 @@ Make sure you have [**Python 2.7**](https://www.python.org/download/releases/2.7
 pip install compoda
 ```
 
+or as an alternative
+- clone this repository and change directory to:
+```
+cd /path/to/compoda
+```
+- Install the requirements by running the following command:
+```
+pip install -r requirements.txt
+```
+- Install compoda:
+```
+python setup.py install
+```
+
 ## Support
 
 Please use [GitHub issues](https://github.com/ofgulban/compoda/issues) for questions, bug reports or feature requests.
