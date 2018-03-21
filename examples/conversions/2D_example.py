@@ -1,8 +1,8 @@
 """Color transforamtions on 2D image."""
 
-import matplotlib
 from skimage import data, color
 from skimage.filters import gaussian
+from skimage.io import imsave
 import matplotlib.pyplot as plt
 import numpy as np
 import compoda.core as coda
@@ -57,7 +57,33 @@ angdif_norm_int[..., 0] = ang_dif.reshape(dims[:-1])
 angdif_norm_int[..., 1] = anorm.reshape(dims[:-1])
 angdif_norm_int[..., 2] = np.sum(img, axis=-1) / 3.
 
-# Plots
+# Exports
+print('Exporting images...')
+imsave('00_original.png', orig)
+out = hsv[..., 0]
+imsave('01_hue.png', out/out.max())
+out = hsv[..., 1]
+imsave('02_saturation.png', out/out.max())
+out = hsv[..., 2]
+imsave('03_value.png', out/out.max())
+out = angdif_norm_int[..., 0]
+imsave('04_angdif.png', out/out.max())
+out = angdif_norm_int[..., 1]
+imsave('05_anorm.png', out/out.max())
+out = angdif_norm_int[..., 2]
+imsave('06_intensity.png', out/out.max())
+out = np.zeros(orig.shape, dtype=int)
+out[..., 0] = orig[..., 0]
+imsave('07_red.png', out)
+out = np.zeros(orig.shape, dtype=int)
+out[..., 1] = orig[..., 1]
+imsave('08_green.png', out)
+out = np.zeros(orig.shape, dtype=int)
+out[..., 2] = orig[..., 2]
+imsave('09_blue.png', out)
+
+# Plots ---
+print('Plotting...')
 plt.subplot(3, 4, 1)
 plt.imshow(orig)
 plt.title('Original')
@@ -66,15 +92,15 @@ plt.axis('off')
 # RGB seperated
 scalar_color = 'Greys_r'
 plt.subplot(3, 4, 2)
-plt.imshow(img[..., 0], cmap=scalar_color)
+plt.imshow(img[..., 0], cmap='Reds_r')
 plt.title('Red')
 plt.axis('off')
 plt.subplot(3, 4, 3)
-plt.imshow(img[..., 1], cmap=scalar_color)
+plt.imshow(img[..., 1], cmap='Greens_r')
 plt.title('Green')
 plt.axis('off')
 plt.subplot(3, 4, 4)
-plt.imshow(img[..., 2], cmap=scalar_color)
+plt.imshow(img[..., 2], cmap='Blues_r')
 plt.title('Blue')
 plt.axis('off')
 
