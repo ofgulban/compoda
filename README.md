@@ -17,15 +17,15 @@ Currently, this library is primarily being developed for (but not limited to) ma
 
 | Package                                                 | Tested version |
 |---------------------------------------------------------|----------------|
-| [NumPy](http://www.numpy.org/)                          | 1.13.1         |
-| [Scipy](https://www.scipy.org/)                         | 0.19.1         |
+| [NumPy](http://www.numpy.org/)                          | 1.14.2         |
+| [Scipy](https://www.scipy.org/)                         | 1.0.0          |
 
 #### Additionally required for example scripts:
 
 | Package                                                 | Tested version |
 |---------------------------------------------------------|----------------|
-| [matplotlib](http://matplotlib.org/)                    | 1.5.3          |
-| [NiBabel](http://nipy.org/nibabel/)                     | 2.1.0          |
+| [matplotlib](http://matplotlib.org/)                    | 2.2.2          |
+| [NiBabel](http://nipy.org/nibabel/)                     | 2.2.1          |
 
 
 ## Installation
