@@ -17,8 +17,8 @@ setup(name='compoda',
       version=VERSION,
       description='Compositional data analysis tools implemented in Python.',
       url='https://github.com/ofgulban/compoda',
-      download_url=('https://github.com/ofgulban/compoda/archive/release/'
-                    + VERSION + 'tar.gz'),
+      download_url=('https://github.com/ofgulban/compoda/archive/'
+                    + VERSION + '.tar.gz'),
       author='Omer Faruk Gulban',
       author_email='faruk.gulban@maastrichtuniversity.nl',
       license='GNU Geneal Public License Version 3',
