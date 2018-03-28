@@ -11,7 +11,7 @@ python setup.py sdist upload -r pypi
 
 from setuptools import setup
 
-VERSION = '0.3.2'
+VERSION = '0.3.3'
 
 setup(name='compoda',
       version=VERSION,
