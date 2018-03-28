@@ -1,4 +1,4 @@
-"""Export aitchison inner product."""
+"""(Work in progress...) Export aitchison inner product."""
 
 import os
 import numpy as np

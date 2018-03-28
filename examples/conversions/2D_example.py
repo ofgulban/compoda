@@ -1,4 +1,4 @@
-"""Color transforamtions on 2D image."""
+"""Color transformations on 2D image."""
 
 from skimage import data, color
 from skimage.filters import gaussian

@@ -1,4 +1,4 @@
-"""Plor compositions of large images."""
+"""(Work in progress...) Plot compositions of MRI data."""
 
 from matplotlib.colors import LogNorm
 import matplotlib.pyplot as plt

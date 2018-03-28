@@ -1,4 +1,4 @@
-"""Red Green Blue (RGB) to Hue Saturation Intensity (HSI) transformation."""
+"""Export metrics related to barycentric coordinates of MRI Data."""
 
 import os
 import numpy as np
