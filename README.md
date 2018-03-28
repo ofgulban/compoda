@@ -30,7 +30,9 @@ Currently, this library is primarily being developed for (but not limited to) ma
 
 ## Installation
 
-Make sure you have [**Python 2.7**](https://www.python.org/download/releases/2.7/) and [**pip**](https://en.wikipedia.org/wiki/Pip_(package_manager)) installed. Then run this command in your command line:
+Make sure to have [**pip**](https://en.wikipedia.org/wiki/Pip_(package_manager)) installed if you are using [**Python 2.7**](https://www.python.org/download/releases/2.7/). It is installed by default in Python 3.
+
+Then run this command in your command line:
 
 ```bash
 pip install compoda
