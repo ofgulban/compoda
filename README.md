@@ -13,7 +13,7 @@ Currently, this library is primarily being developed for (but not limited to) ma
 
 ## Dependencies
 
-**[Python 2.7](https://www.python.org/download/releases/2.7/)** or **[Python 3.6](https://www.python.org/downloads/release/python-363/)** (compatible with both).
+**[Python 3.6](https://www.python.org/downloads/release/python-363/)** or **[Python 2.7](https://www.python.org/download/releases/2.7/)** (compatible with both).
 
 | Package                                                 | Tested version |
 |---------------------------------------------------------|----------------|
@@ -30,7 +30,7 @@ Currently, this library is primarily being developed for (but not limited to) ma
 
 ## Installation
 
-Make sure you have [**Python 2.7**](https://www.python.org/download/releases/2.7/) and [**pip**](https://en.wikipedia.org/wiki/Pip_(package_manager)) installed. Then run this command in your command line:
+Then run this command in your command line (If you are using [**Python 2.7**](https://www.python.org/download/releases/2.7/) make sure to have [**pip**](https://en.wikipedia.org/wiki/Pip_(package_manager)) installed):
 
 ```bash
 pip install compoda
