@@ -6,6 +6,8 @@ from compoda.core import closure, perturb, power
 from compoda.core import alr_transformation, inverse_alr_transformation
 from compoda.core import clr_transformation, inverse_clr_transformation
 from compoda.core import ilr_transformation, inverse_ilr_transformation
+from compoda.core import aitchison_dist, aitchison_norm, sample_center
+from compoda.core import aitchison_inner_product
 
 
 def test_closure():
@@ -76,3 +78,42 @@ def test_ilr():
     output_2 = inverse_ilr_transformation(output_1)
     # Then
     assert output_2 == pytest.approx(data)
+
+
+def test_aitchison_norm():
+    """Test Aitchison norm."""
+    # Given
+    data = np.array([1/3, 1/3, 1/3])
+    # When
+    output = aitchison_norm(data[None, :])
+    # Then
+    assert output == pytest.approx(0)
+
+
+def test_aitchison_distance():
+    """Test Aitchison distance."""
+    # Given
+    data = np.array([[1/5, 2/5, 2/5], [2/5, 1/5, 2/5], [2/5, 2/5, 1/5]])
+    # When
+    output = aitchison_dist(data[0:2, :], data[1:3, :])
+    # Then
+    assert output[0] == output[1]
+
+
+def test_sample_center():
+    """Test compositional sample center."""
+    # Given
+    data = np.array([[1/5, 2/5, 2/5], [2/5, 1/5, 2/5], [2/5, 2/5, 1/5]])
+    # When
+    output = sample_center(data)
+    # Then
+    assert output[0] == pytest.approx(np.array([1/3, 1/3, 1/3]))
+
+
+def test_aitchison_inner_product():
+    """Test Aitchison inner product."""
+    # Given
+    data = np.array([[1/5, 2/5, 2/5], [2/5, 1/5, 2/5], [2/5, 2/5, 1/5]])
+    # When
+    output = aitchison_inner_product(data[0:2, :], data[1:3, :])
+    assert output[0] == output[1]
