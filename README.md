@@ -9,11 +9,11 @@
 
 Compositional data analysis tools implemented in python.
 
-Currently, this library is primarily being developed for (but not limited to) magnetic resonance images with multiple contrasts. For further details, check my [preprint on arXiv](https://arxiv.org/abs/1705.03457) which is presented in [CoDaWork 2017](http://www.compositionaldata.com/codawork2017/).
+Currently, this library is primarily being developed for (but not limited to) magnetic resonance images with multiple contrasts. For further details, please see my paper [here](https://arxiv.org/abs/1705.03457) or [here](https://www.ajs.or.at/index.php/ajs/article/view/743/641).
 
 ## Dependencies
 
-**[Python 2.7](https://www.python.org/download/releases/2.7/)** or **[Python 3.6](https://www.python.org/downloads/release/python-363/)** (compatible with both).
+**[Python 3.6](https://www.python.org/downloads/release/python-363/)**.
 
 | Package                                                 | Tested version |
 |---------------------------------------------------------|----------------|
@@ -30,16 +30,14 @@ Currently, this library is primarily being developed for (but not limited to) ma
 
 ## Installation
 
-Make sure to have [**pip**](https://en.wikipedia.org/wiki/Pip_(package_manager)) installed if you are using [**Python 2.7**](https://www.python.org/download/releases/2.7/). It is installed by default in Python 3.
-
-Then run this command in your command line:
+Run this command in your command line:
 
 ```bash
 pip install compoda
 ```
 
 or as an alternative
-- clone this repository and change directory to:
+- Clone this repository and change directory to:
 ```bash
 cd /path/to/compoda
 ```
@@ -68,4 +66,4 @@ The project is licensed under [BSD-3-Clause](https://opensource.org/licenses/BSD
 
 * Aitchison, J. (2002). A Concise Guide to Compositional Data Analysis. CDA Workshop Girona, 24, 73–81.
 
-* Pawlowsky-Glahn, V., Egozcue, J. J., & Tolosana-Delgado, R. (2015). Modelling and Analysis of Compositional Data. Chichester, UK: John Wiley & Sons, Ltd. http://doi.org/10.1002/9781119003144
+* Pawlowsky-Glahn, V., Egozcue, J. J., & Tolosana-Delgado, R. (2015). Modelling and Analysis of Compositional Data. Chichester, UK: John Wiley & Sons, Ltd. <http://doi.org/10.1002/9781119003144>
