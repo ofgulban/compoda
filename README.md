@@ -58,7 +58,7 @@ Please use [GitHub issues](https://github.com/ofgulban/compoda/issues) for quest
 
 ## License
 
-The project is licensed under [GNU General Public License Version 3](http://www.gnu.org/licenses/gpl.html).
+The project is licensed under [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause).
 
 ## References
 
