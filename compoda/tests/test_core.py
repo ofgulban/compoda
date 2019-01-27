@@ -2,12 +2,7 @@
 
 import pytest
 import numpy as np
-from compoda.core import closure, perturb, power
-from compoda.core import alr_transformation, inverse_alr_transformation
-from compoda.core import clr_transformation, inverse_clr_transformation
-from compoda.core import ilr_transformation, inverse_ilr_transformation
-from compoda.core import aitchison_dist, aitchison_norm, sample_center
-from compoda.core import aitchison_inner_product
+import compoda.core as coda
 
 
 def test_closure():
@@ -16,7 +11,7 @@ def test_closure():
     data = np.random.random([2, 3])
     expected = np.ones(2)
     # When
-    output = np.sum(closure(data), axis=1)
+    output = np.sum(coda.closure(data), axis=1)
     # Then
     assert output == pytest.approx(expected)
 
@@ -28,7 +23,7 @@ def test_perturb():
     p_vals = np.array([1., 2., 3.])  # perturbation values
     expected = data * p_vals
     # When
-    output = perturb(data, p_vals, reclose=False)
+    output = coda.perturb(data, p_vals, reclose=False)
     # Then
     assert np.all(output == expected)
 
@@ -39,7 +34,7 @@ def test_power():
     data = np.random.random([2, 3])
     expected = data**np.pi
     # When
-    output = power(data, np.pi, reclose=False)
+    output = coda.power(data, np.pi, reclose=False)
     # Then
     assert np.all(output == expected)
 
@@ -49,9 +44,9 @@ def test_alr():
     # Given
     data = np.random.random([2, 3])
     # When
-    data = closure(data)
-    output_1 = alr_transformation(data)
-    output_2 = inverse_alr_transformation(output_1)
+    data = coda.closure(data)
+    output_1 = coda.alr_transformation(data)
+    output_2 = coda.inverse_alr_transformation(output_1)
     # Then
     assert output_2 == pytest.approx(data)
 
@@ -61,9 +56,9 @@ def test_clr():
     # Given
     data = np.random.random([2, 3])
     # When
-    data = closure(data)
-    output_1 = clr_transformation(data)
-    output_2 = inverse_clr_transformation(output_1)
+    data = coda.closure(data)
+    output_1 = coda.clr_transformation(data)
+    output_2 = coda.inverse_clr_transformation(output_1)
     # Then
     assert output_2 == pytest.approx(data)
 
@@ -73,9 +68,9 @@ def test_ilr():
     # Given
     data = np.random.random([2, 3])
     # When
-    data = closure(data)
-    output_1 = ilr_transformation(data)
-    output_2 = inverse_ilr_transformation(output_1)
+    data = coda.closure(data)
+    output_1 = coda.ilr_transformation(data)
+    output_2 = coda.inverse_ilr_transformation(output_1)
     # Then
     assert output_2 == pytest.approx(data)
 
@@ -85,7 +80,7 @@ def test_aitchison_norm():
     # Given
     data = np.array([1/3, 1/3, 1/3])
     # When
-    output = aitchison_norm(data[None, :])
+    output = coda.aitchison_norm(data[None, :])
     # Then
     assert output == pytest.approx(0)
 
@@ -95,7 +90,7 @@ def test_aitchison_distance():
     # Given
     data = np.array([[1/5, 2/5, 2/5], [2/5, 1/5, 2/5], [2/5, 2/5, 1/5]])
     # When
-    output = aitchison_dist(data[0:2, :], data[1:3, :])
+    output = coda.aitchison_dist(data[0:2, :], data[1:3, :])
     # Then
     assert output[0] == output[1]
 
@@ -103,9 +98,11 @@ def test_aitchison_distance():
 def test_sample_center():
     """Test compositional sample center."""
     # Given
-    data = np.array([[1/5, 2/5, 2/5], [2/5, 1/5, 2/5], [2/5, 2/5, 1/5]])
+    data = np.array([[1/5, 2/5, 2/5],
+                     [2/5, 1/5, 2/5],
+                     [2/5, 2/5, 1/5]])
     # When
-    output = sample_center(data)
+    output = coda.sample_center(data)
     # Then
     assert output[0] == pytest.approx(np.array([1/3, 1/3, 1/3]))
 
@@ -113,7 +110,9 @@ def test_sample_center():
 def test_aitchison_inner_product():
     """Test Aitchison inner product."""
     # Given
-    data = np.array([[1/5, 2/5, 2/5], [2/5, 1/5, 2/5], [2/5, 2/5, 1/5]])
+    data = np.array([[1/5, 2/5, 2/5],
+                     [2/5, 1/5, 2/5],
+                     [2/5, 2/5, 1/5]])
     # When
-    output = aitchison_inner_product(data[0:2, :], data[1:3, :])
+    output = coda.aitchison_inner_product(data[0:2, :], data[1:3, :])
     assert output[0] == output[1]
