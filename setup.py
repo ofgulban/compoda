@@ -11,7 +11,7 @@ python setup.py sdist upload -r pypi
 
 from setuptools import setup
 
-VERSION = '0.3.3'
+VERSION = '0.3.4'
 
 setup(name='compoda',
       version=VERSION,
@@ -21,7 +21,7 @@ setup(name='compoda',
                     + VERSION + '.tar.gz'),
       author='Omer Faruk Gulban',
       author_email='faruk.gulban@maastrichtuniversity.nl',
-      license='GNU Geneal Public License Version 3',
+      license='BSD-3-clause',
       packages=['compoda'],
       install_requires=['numpy', 'scipy'],
       zip_safe=False)
