@@ -398,7 +398,7 @@ def sample_center(data):
     return closure(center[None, :])
 
 
-def sample_total_variance(data, center):
+def sample_total_variance(data, center=None):
     """Sample total variance.
 
     Parameters
@@ -422,6 +422,8 @@ def sample_total_variance(data, center):
         DOI: 10.1002/9781119003144
 
     """
+    if center is None:
+        center = sample_center(data)
     dims = data.shape
     temp = 0
     center = np.ones(dims) * center
