@@ -1,13 +1,11 @@
 sudo: false
 language: python
 python:
-  - 3.7
-# command to install dependencies
-install:
+  - "3.6"
+install:  # command to install dependencies
   - pip install -r requirements.txt
   - python setup.py develop
-# command to run tests
-script:
+script:  # command to run tests
   - py.test --cov=./compoda
 after_success:
   - bash <(curl -s https://codecov.io/bash)
