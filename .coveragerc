@@ -4,4 +4,4 @@ source = compoda
 omit =
     *__init__*
     *tests/*
-    compoda/future/*
+    compoda/archive/*

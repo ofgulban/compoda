@@ -1,8 +1,4 @@
-"""Exercise different logratio trasnformations.
-
-TODO: Turn this script into trasnformation tests.
-
-"""
+"""Create a figure for cube to almost hexcone transformation."""
 
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
