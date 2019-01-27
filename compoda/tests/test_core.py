@@ -119,14 +119,14 @@ def test_aitchison_inner_product():
     assert output[0] == output[1]
 
 
-def text_total_variance():
+def test_sample_total_variance():
     """Test sample total variance."""
     # Given
     data = np.array([[1/5, 2/5, 2/5],
                      [2/5, 1/5, 2/5],
                      [2/5, 2/5, 1/5]])
     # When
-    output = coda.sample_total_variance(data)
+    output = coda.sample_total_variance(data, center=None)
     # Then
     assert output == pytest.approx(0.3203020092788009)
 
