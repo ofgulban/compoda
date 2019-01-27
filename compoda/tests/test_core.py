@@ -115,4 +115,29 @@ def test_aitchison_inner_product():
                      [2/5, 2/5, 1/5]])
     # When
     output = coda.aitchison_inner_product(data[0:2, :], data[1:3, :])
+    # Then
     assert output[0] == output[1]
+
+
+def text_total_variance():
+    """Test sample total variance."""
+    # Given
+    data = np.array([[1/5, 2/5, 2/5],
+                     [2/5, 1/5, 2/5],
+                     [2/5, 2/5, 1/5]])
+    # When
+    output = coda.sample_total_variance(data)
+    # Then
+    assert output == pytest.approx(0.3203020092788009)
+
+
+def test_sample_sstd():
+    """Test sample simplicial standard deviation(sstd)."""
+    # Given
+    data = np.array([[1/5, 2/5, 2/5],
+                     [2/5, 1/5, 2/5],
+                     [2/5, 2/5, 1/5]])
+    # When
+    output = coda.sample_sstd(data)
+    # Then
+    assert output == pytest.approx(0.40018871128431455)
