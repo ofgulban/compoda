@@ -9,7 +9,7 @@
 
 Compositional data analysis tools implemented in python.
 
-Currently, this library is primarily being developed for (but not limited to) magnetic resonance images with multiple contrasts. For further details, please see my paper **[here](https://www.ajs.or.at/index.php/ajs/article/view/743/641)** (or [here](https://arxiv.org/abs/1705.03457)).
+Currently, this library is primarily being developed for (but not limited to) magnetic resonance images with multiple contrasts. For further details, please see my paper **[here](https://www.ajs.or.at/index.php/ajs/article/view/743)** (or [here](https://arxiv.org/abs/1705.03457)).
 
 ## Dependencies
 
