@@ -1,5 +1,5 @@
 [![DOI](https://zenodo.org/badge/78312374.svg)](https://zenodo.org/badge/latestdoi/78312374) [![Build Status](https://travis-ci.org/ofgulban/compoda.svg?branch=master)](https://travis-ci.org/ofgulban/compoda) [![Build status](https://ci.appveyor.com/api/projects/status/plrtbnjvf09h38xn?svg=true)](https://ci.appveyor.com/project/ofgulban/compoda)
- [![codecov](https://codecov.io/gh/ofgulban/compoda/branch/master/graph/badge.svg)](https://codecov.io/gh/ofgulban/compoda) [![Code Health](https://landscape.io/github/ofgulban/compoda/master/landscape.svg?style=flat)](https://landscape.io/github/ofgulban/compoda/master)
+ [![codecov](https://codecov.io/gh/ofgulban/compoda/branch/master/graph/badge.svg)](https://codecov.io/gh/ofgulban/compoda) [![HitCount](http://hits.dwyl.io/ofgulban/compoda.svg)](http://hits.dwyl.io/ofgulban/compoda)
 
 
 
