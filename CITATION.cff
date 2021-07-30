@@ -1,0 +1,11 @@
+cff-version: 1.1.0
+message: "If you use this software, consider citing it as below."
+authors:
+  - family-names: Gulban
+    given-names: Omer Faruk
+    orcid: https://orcid.org/0000-0001-7761-3727
+
+title: "The relation between color spaces and compositional data analysis demonstrated with magnetic resonance image processing applications"
+version: 0.3.5
+doi: https://doi.org/10.17713/ajs.v47i5.743
+date-released: 2019-01-27
