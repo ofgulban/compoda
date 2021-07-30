@@ -1,6 +1,5 @@
 [![DOI](https://zenodo.org/badge/78312374.svg)](https://zenodo.org/badge/latestdoi/78312374) [![Build Status](https://travis-ci.org/ofgulban/compoda.svg?branch=master)](https://travis-ci.org/ofgulban/compoda) [![Build status](https://ci.appveyor.com/api/projects/status/plrtbnjvf09h38xn?svg=true)](https://ci.appveyor.com/project/ofgulban/compoda)
- [![codecov](https://codecov.io/gh/ofgulban/compoda/branch/master/graph/badge.svg)](https://codecov.io/gh/ofgulban/compoda) [![HitCount](http://hits.dwyl.io/ofgulban/compoda.svg)](http://hits.dwyl.io/ofgulban/compoda)
-
+ [![codecov](https://codecov.io/gh/ofgulban/compoda/branch/master/graph/badge.svg)](https://codecov.io/gh/ofgulban/compoda)
 
 
 <img src="/visuals/logo.png" width=200 align="right" />
@@ -9,7 +8,7 @@
 
 Compositional data analysis tools implemented in python.
 
-Currently, this library is primarily being developed for (but not limited to) magnetic resonance images with multiple contrasts. For further details, please see my paper **[here](https://www.ajs.or.at/index.php/ajs/article/view/743/641)** (or [here](https://arxiv.org/abs/1705.03457)).
+Currently, this library is primarily being developed for (but not limited to) magnetic resonance images with multiple contrasts. For further details, please see my paper **[here](https://www.ajs.or.at/index.php/ajs/article/view/743)** (or [here](https://arxiv.org/abs/1705.03457)).
 
 ## Dependencies
 
